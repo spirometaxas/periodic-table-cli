@@ -1,0 +1,22 @@
+{
+  "name": "periodic-table-cli",
+  "version": "1.0.0",
+  "description": "Print the Periodic Table of Elements to the console!",
+  "main": "./src/index.js",
+  "bin": {
+    "periodic-table-cli": "./src/cli.js"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spirometaxas/periodic-table-cli.git"
+  },
+  "scripts": {
+    "cli": "node ./src/cli.js"
+  },
+  "author": "Spiro Metaxas",
+  "license": "MIT",
+  "keywords": [ "Periodic Table", "Periodic Table of Elements", "periodic", "periodic-table-cli", "Chemistry", "elements", "atoms", "cli", "atomic", "console", "unicode" ]
+}
