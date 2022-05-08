@@ -1,7 +1,7 @@
 # periodic-table-cli
 Print the Periodic Table of Elements to the console!
 
-Minimum terminal width: 113 characters
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/periodic-table-banner.png)
 
 ## Usage
 ### Via `npx`:
@@ -27,3 +27,21 @@ const periodic = require('periodic-table-cli');
 console.log(periodic.table);
 console.log(periodic.table_small);
 ```
+
+## Options
+### Standard Periodic Table
+```
+$ periodic-table-cli
+```
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/periodic-table.png)
+
+Minimum terminal width: 113 characters
+
+### Smaller Periodic Table
+To render a more compact version of the Periodic Table of Elements, add the `--small` or `-s` flag.
+```
+$ periodic-table-cli --small
+```
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/periodic-table-small.png)
+
+Minimum terminal width: 76 characters

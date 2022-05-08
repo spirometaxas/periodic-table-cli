@@ -18,5 +18,19 @@
   },
   "author": "Spiro Metaxas",
   "license": "MIT",
-  "keywords": [ "Periodic Table", "Periodic Table of Elements", "periodic", "periodic-table-cli", "Chemistry", "elements", "atoms", "cli", "atomic", "console", "unicode" ]
+  "keywords": [ 
+    "Periodic Table", 
+    "Periodic Table of Elements", 
+    "periodic", 
+    "periodic-table-cli", 
+    "Chemistry", 
+    "elements", 
+    "atoms", 
+    "atomic",
+    "cli",
+    "console",
+    "terminal",
+    "shell",
+    "unicode"
+  ]
 }
