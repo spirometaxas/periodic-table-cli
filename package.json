@@ -1,6 +1,6 @@
 {
   "name": "periodic-table-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Print the Periodic Table of Elements to the console!",
   "main": "./src/index.js",
   "bin": {
