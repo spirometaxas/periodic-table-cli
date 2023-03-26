@@ -5,15 +5,25 @@ const { Utils } = require('./utils.js');
 
 const printUsage = function() {
     console.log('\n' + 
-                ' An interactive Periodic Table of Elements for the console!\n' +
+                ' An interactive Periodic Table of Elements app for the console!\n' +
+                '\n' +
+                ' Interactive Controls:\n' + 
+                '   - Navigation: Use <UP>|<DOWN>|<LEFT>|<RIGHT> arrows\n' + 
+                '   - Display Mode: Use Slash </> to toggle the display mode forwards\n' +
+                '                   Use BackSlash <\\> to toggle the display mode in reverse\n' +
+                '   - Search:\n' +
+                '   - Quit: Press <ESC> or <CTRL+C>\n' +
                 '\n' +
                 ' Usage:\n' + 
                 '   $ periodic-table-cli\n' + 
                 '   $ periodic-table-cli [options]\n' + 
                 '\n' +
                 ' Options:\n' + 
-                '   --chart, -c    Print the Periodic Table Chart only (non-interactive)\n' +
-                '   --small, -s    A smaller chart version of the Periodic Table of Elements\n');
+                '   --chart, -c            Print the Periodic Table of Elements Chart only (non-interactive)\n' +
+                '   --small, -s            A smaller Periodic Table of Elements Chart (include --chart)\n' +
+                '   --atomic-number=<int>  Initialize the Periodic Table at the provided atomic number (1-118)\n' +
+                '\n' +
+                ' Last updated March 2023');
 }
 
 const getFlags = function(params) {
@@ -70,8 +80,6 @@ const getAtomicNumber = function(flags) {
     return 1;
 }
 
-// TODO: Check if isTTY
-
 var small = false;
 var atomicNumber = 1;
 if (process.argv.length > 2) {
@@ -87,5 +95,9 @@ if (process.argv.length > 2) {
     }
 }
 
+if (!process.stdout.isTTY) {
+    console.log(' Error: Interactive mode is only supported within a terminal screen.');
+    process.exit();
+}
 
 new App().start({ atomicNumber: atomicNumber });

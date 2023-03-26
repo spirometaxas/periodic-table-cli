@@ -1,5 +1,5 @@
 const periodic_table = require('./index.js');
-const { SelectModes, DisplayModes, PeriodicTable } = require('./statecontroller.js');
+const { SelectModes, DisplayModes, Layout } = require('./statecontroller.js');
 const data = require('./data.js');
 const { Utils } = require('./utils.js');
 
@@ -127,22 +127,22 @@ class Dashboard {
 
     _initDataOnBoard() {
         const elements = Utils.getElements(data.elements);
-        for (var r = 0; r < PeriodicTable.LAYOUT.length; r++) {
-            for (var c = 0; c < PeriodicTable.LAYOUT[r].length; c++) {
-                if (PeriodicTable.LAYOUT[r][c] !== undefined && PeriodicTable.LAYOUT[r][c] > 0) {
+        for (var r = 0; r < Layout.PeriodicTable.length; r++) {
+            for (var c = 0; c < Layout.PeriodicTable[r].length; c++) {
+                if (Layout.PeriodicTable[r][c] !== undefined && Layout.PeriodicTable[r][c] > 0) {
                     const xOffset = this.ELEMENTS_POS.x;
                     var yOffset = this.ELEMENTS_POS.y;
-                    if (Utils.isBottomSection(PeriodicTable.LAYOUT[r][c])) {
+                    if (Utils.isBottomSection(Layout.PeriodicTable[r][c])) {
                         yOffset += 2;
                     }
                     // Atomic number
-                    if (PeriodicTable.LAYOUT[r][c] < 10) {
-                        this._setText(xOffset + (c * this.ELEMENT_WIDTH) + 3, yOffset + (r * this.ELEMENT_HEIGHT) + 1, elements[PeriodicTable.LAYOUT[r][c]]['atomicNumber'].toString());
+                    if (Layout.PeriodicTable[r][c] < 10) {
+                        this._setText(xOffset + (c * this.ELEMENT_WIDTH) + 3, yOffset + (r * this.ELEMENT_HEIGHT) + 1, elements[Layout.PeriodicTable[r][c]]['atomicNumber'].toString());
                     } else {
-                        this._setText(xOffset + (c * this.ELEMENT_WIDTH) + 2, yOffset + (r * this.ELEMENT_HEIGHT) + 1, elements[PeriodicTable.LAYOUT[r][c]]['atomicNumber'].toString());
+                        this._setText(xOffset + (c * this.ELEMENT_WIDTH) + 2, yOffset + (r * this.ELEMENT_HEIGHT) + 1, elements[Layout.PeriodicTable[r][c]]['atomicNumber'].toString());
                     }
                     // Symbol
-                    this._setText(xOffset + (c * this.ELEMENT_WIDTH) + 3, yOffset + (r * this.ELEMENT_HEIGHT) + 2, elements[PeriodicTable.LAYOUT[r][c]]['symbol']);
+                    this._setText(xOffset + (c * this.ELEMENT_WIDTH) + 3, yOffset + (r * this.ELEMENT_HEIGHT) + 2, elements[Layout.PeriodicTable[r][c]]['symbol']);
                 }
             }
         }
@@ -353,16 +353,17 @@ class Dashboard {
         }
 
         // Draw unselected
-        for (var r = 0; r < PeriodicTable.LAYOUT.length; r++) {
-            for (var c = 0; c < PeriodicTable.LAYOUT[r].length; c++) {
-                if (PeriodicTable.LAYOUT[r][c] !== undefined && PeriodicTable.LAYOUT[r][c] > 0) {
+        for (var r = 0; r < Layout.PeriodicTable.length; r++) {
+            for (var c = 0; c < Layout.PeriodicTable[r].length; c++) {
+                if (Layout.PeriodicTable[r][c] !== undefined && Layout.PeriodicTable[r][c] > 0) {
+                    const elementConfig = config.elements[Layout.PeriodicTable[r][c]];
                     const xOffset = this.ELEMENTS_POS.x;
                     var yOffset = this.ELEMENTS_POS.y;
-                    if (Utils.isBottomSection(config.elements[r][c].atomicNumber)) {
+                    if (Utils.isBottomSection(elementConfig.atomicNumber)) {
                         yOffset += 2;
                     }
 
-                    const fillColor = this._getElementFillColor(config.elements[r][c], config.displayMode);
+                    const fillColor = this._getElementFillColor(elementConfig, config.displayMode);
                     var focusColor = Colors.WHITE;
 
                     if (config.shells.selected === undefined && config.families.selected === undefined && config.displayMode === DisplayModes.STANDARD) {
@@ -385,21 +386,22 @@ class Dashboard {
         }
 
         // Draw selected
-        for (var r = 0; r < config.elements.length; r++) {
-            for (var c = 0; c < config.elements[r].length; c++) {
-                if (config.elements[r][c] !== undefined && config.elements[r][c].selected !== undefined) {
+        for (var r = 0; r < Layout.PeriodicTable.length; r++) {
+            for (var c = 0; c < Layout.PeriodicTable[r].length; c++) {
+                if (Layout.PeriodicTable[r][c] > 0 && config.elements[Layout.PeriodicTable[r][c]] !== undefined && config.elements[Layout.PeriodicTable[r][c]].selected !== undefined) {
+                    const elementConfig = config.elements[Layout.PeriodicTable[r][c]];
                     const xOffset = this.ELEMENTS_POS.x;
                     var yOffset = this.ELEMENTS_POS.y;
-                    if (Utils.isBottomSection(config.elements[r][c].atomicNumber)) {
+                    if (Utils.isBottomSection(elementConfig.atomicNumber)) {
                         yOffset += 2;
                     }
-                    const fillColor = this._getElementFillColor(config.elements[r][c], config.displayMode);
-                    if (config.elements[r][c].selected.type === SelectModes.ELEMENT) {
+                    const fillColor = this._getElementFillColor(elementConfig, config.displayMode);
+                    if (elementConfig.selected.type === SelectModes.ELEMENT) {
                         this._decorateElement(xOffset + (c * this.ELEMENT_WIDTH), yOffset + (r * this.ELEMENT_HEIGHT), Colors.FOCUS_GOLD, fillColor, true, config.displayMode);
-                    } else if (config.elements[r][c].selected.type === SelectModes.FAMILY) {
+                    } else if (elementConfig.selected.type === SelectModes.FAMILY) {
                         const familyConfig = this.FAMILIES_CONFIG[config.families.selected];
                         this._decorateElement(xOffset + (c * this.ELEMENT_WIDTH), yOffset + (r * this.ELEMENT_HEIGHT), familyConfig.color, fillColor, true, config.displayMode);
-                    } else if (config.elements[r][c].selected.type === SelectModes.SHELL) {
+                    } else if (elementConfig.selected.type === SelectModes.SHELL) {
                         const shellConfig = this.SHELLS_CONFIG[config.shells.selected];
                         this._decorateElement(xOffset + (c * this.ELEMENT_WIDTH), yOffset + (r * this.ELEMENT_HEIGHT), shellConfig.color, fillColor, true, config.displayMode);
                     }

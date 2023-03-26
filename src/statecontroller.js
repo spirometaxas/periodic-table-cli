@@ -14,9 +14,9 @@ class DisplayModes {
     static STATES = 'states';
 }
 
-class PeriodicTable {
+class Layout {
 
-    static LAYOUT = [
+    static PeriodicTable = [
         [   1,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   2 ],
         [   3,   4,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   5,   6,   7,   8,   9,  10 ],
         [  11,  12,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  13,  14,  15,  16,  17,  18 ],
@@ -28,38 +28,17 @@ class PeriodicTable {
         [   0,   0,  89,  90,  91,  92,  93,  94,  95,  96,  97,  98,  99, 100, 101, 102, 103,   0 ],
     ];
 
-}
-
-class StateController {
-
-    familiesTable = [
-        [  0,  1,  2,  3 ],
-        [  4,  5,  6,  7 ],
-        [  8,  9,  0,  0 ],
+    static FamiliesTable = [ 
+        { key: 'Alkali metal', index: 0 }, { key: 'Alkaline earth metal', index: 1 }, { key: 'Transition metal', index: 2 }, { key: 'Post-transition metal', index: 3 },
+        { key: 'Metalloid',    index: 4 }, { key: 'Nonmetal',             index: 5 }, { key: 'Halogen',          index: 6 }, { key: 'Noble gas',             index: 7 },
+        { key: 'Lanthanide',   index: 8 }, { key: 'Actinide',             index: 9 },
     ];
 
-    shellsTable = [
-        [  0,  1,  2,  3 ],
+    static ShellsTable = [
+        { key: 's-shell', index: 0 }, { key: 'p-shell', index: 1 }, { key: 'd-shell', index: 2 }, { key: 'f-shell', index: 3 },
     ];
 
-    familyNames = [ 
-        'Alkali metal', 'Alkaline earth metal', 'Transition metal', 'Post-transition metal',
-        'Metalloid',    'Nonmetal',             'Halogen',          'Noble gas',
-        'Lanthanide',   'Actinide',
-    ];
-
-    shellNames = [
-        's-shell', 'p-shell', 'd-shell', 'f-shell',
-    ];
-
-    displayModeOrder = [
-        DisplayModes.STANDARD,
-        DisplayModes.FAMILIES,
-        DisplayModes.SHELLS,
-        DisplayModes.STATES,
-    ];
-
-    panelKeyNames = [
+    static PanelData = [
         { key: "atomicNumber",          name: "Atomic Number"     },
         { key: "symbol",                name: "Symbol"            },
         { key: "atomicMass",            name: "Atomic Mass"       },
@@ -80,6 +59,17 @@ class StateController {
         { key: "yearDiscovered",        name: "Year"              },
         { key: "electronConfiguration", name: "Electron Config"   },
         { key: "oxidationStates",       name: "Oxidation States"  },
+    ];
+
+}
+
+class StateController {
+
+    displayModeOrder = [
+        DisplayModes.STANDARD,
+        DisplayModes.FAMILIES,
+        DisplayModes.SHELLS,
+        DisplayModes.STATES,
     ];
 
     constructor(config) {
@@ -134,7 +124,7 @@ class StateController {
                 this.currentFocus.id = 39;
                 return true;
             } else if (currentPos.row > 0) {
-                const nextAtomicNumber = PeriodicTable.LAYOUT[currentPos.row - 1][currentPos.column];
+                const nextAtomicNumber = Layout.PeriodicTable[currentPos.row - 1][currentPos.column];
                 if (nextAtomicNumber !== 0) {
                     this.currentFocus.id = nextAtomicNumber;
                     return true;
@@ -179,7 +169,7 @@ class StateController {
                 return true;
             } else {
                 if (currentPos.row < 8) {
-                    this.currentFocus.id = PeriodicTable.LAYOUT[currentPos.row + 1][currentPos.column];
+                    this.currentFocus.id = Layout.PeriodicTable[currentPos.row + 1][currentPos.column];
                 } else {
                     if (this.currentFocus.id === 89 || this.currentFocus.id === 90) {
                         this.currentFocus = { type: SelectModes.FAMILY, id: 0 };
@@ -231,43 +221,39 @@ class StateController {
     }
 
     getRenderConfig() {
-        const board = [];
+        const board = {};
         const families = {};
         const shells = {};
         var group;
         var period;
         var panel = {};
-        for (let r = 0; r < PeriodicTable.LAYOUT.length; r++) {
-            const row = [];
-            for (let c = 0; c < PeriodicTable.LAYOUT[r].length; c++) {
-                if (PeriodicTable.LAYOUT[r][c] > 0) {
-                    const config = { atomicNumber: PeriodicTable.LAYOUT[r][c] };
-                    if (this.currentFocus.type == SelectModes.ELEMENT && this.currentFocus.id === PeriodicTable.LAYOUT[r][c]) {
+        for (let r = 0; r < Layout.PeriodicTable.length; r++) {
+            for (let c = 0; c < Layout.PeriodicTable[r].length; c++) {
+                if (Layout.PeriodicTable[r][c] > 0) {
+                    const config = { atomicNumber: Layout.PeriodicTable[r][c] };
+                    if (this.currentFocus.type == SelectModes.ELEMENT && this.currentFocus.id === Layout.PeriodicTable[r][c]) {
                         config.selected = {
                             type: SelectModes.ELEMENT,
                         };
-                    } else if (this.currentFocus.type == SelectModes.FAMILY && this.elements[PeriodicTable.LAYOUT[r][c]].family === this.familyNames[this.currentFocus.id]) {
+                    } else if (this.currentFocus.type == SelectModes.FAMILY && this.elements[Layout.PeriodicTable[r][c]].family === Layout.FamiliesTable[this.currentFocus.id].key) {
                         config.selected = {
                             type: SelectModes.FAMILY,
                         };
-                    } else if (this.currentFocus.type == SelectModes.SHELL && this.elements[PeriodicTable.LAYOUT[r][c]].shell === this.shellNames[this.currentFocus.id]) {
+                    } else if (this.currentFocus.type == SelectModes.SHELL && this.elements[Layout.PeriodicTable[r][c]].shell === Layout.ShellsTable[this.currentFocus.id].key) {
                         config.selected = {
                             type: SelectModes.SHELL,
                         };
                     }
                     if (this.currentDisplayMode === DisplayModes.FAMILIES) {
-                        config.display = { family: this.elements[PeriodicTable.LAYOUT[r][c]].family };
+                        config.display = { family: this.elements[Layout.PeriodicTable[r][c]].family };
                     } else if (this.currentDisplayMode === DisplayModes.SHELLS) {
-                        config.display = { shell: this.elements[PeriodicTable.LAYOUT[r][c]].shell };
+                        config.display = { shell: this.elements[Layout.PeriodicTable[r][c]].shell };
                     } else if (this.currentDisplayMode === DisplayModes.STATES) {
-                        config.display = { state: this.elements[PeriodicTable.LAYOUT[r][c]].standardState };
+                        config.display = { state: this.elements[Layout.PeriodicTable[r][c]].standardState };
                     }
-                    row.push(config);
-                } else {
-                    row.push(undefined);
+                    board[Layout.PeriodicTable[r][c]] = config;
                 }
             }
-            board.push(row);
         }
 
         if (this.currentFocus.type === SelectModes.ELEMENT) {
@@ -277,11 +263,11 @@ class StateController {
             period = this.elements[this.currentFocus.id].period;
             panel.top = this.elements[this.currentFocus.id].name;
         } else if (this.currentFocus.type === SelectModes.FAMILY) {
-            families.selected = this.familyNames[this.currentFocus.id];
-            panel.top = data.families[this.familyNames[this.currentFocus.id]].name;
+            families.selected = Layout.FamiliesTable[this.currentFocus.id].key;
+            panel.top = data.families[Layout.FamiliesTable[this.currentFocus.id].key].name;
         } else if (this.currentFocus.type === SelectModes.SHELL) {
-            shells.selected = this.shellNames[this.currentFocus.id];
-            panel.top = data.shells[this.shellNames[this.currentFocus.id]].name;
+            shells.selected = Layout.ShellsTable[this.currentFocus.id].key;
+            panel.top = data.shells[Layout.ShellsTable[this.currentFocus.id].key].name;
         }
 
         var panel = {};
@@ -291,7 +277,7 @@ class StateController {
                 id: this.currentFocus.id,
             };
             panel.bottom = { list: [] };
-            for (const keyConfig of this.panelKeyNames) {
+            for (const keyConfig of Layout.PanelData) {
                 const value = this.elements[this.currentFocus.id][keyConfig.key];
                 if (value !== undefined) {
                     panel.bottom.list.push({ key: keyConfig.name, value: String(value) });
@@ -301,16 +287,16 @@ class StateController {
             }
         } else if (this.currentFocus.type === SelectModes.FAMILY) {
             panel.top = { 
-                family: data.families[this.familyNames[this.currentFocus.id]].name,
-                id: this.familyNames[this.currentFocus.id],
+                family: data.families[Layout.FamiliesTable[this.currentFocus.id].key].name,
+                id: Layout.FamiliesTable[this.currentFocus.id].key,
             };
-            panel.bottom = { description: data.families[this.familyNames[this.currentFocus.id]].description };
+            panel.bottom = { description: data.families[Layout.FamiliesTable[this.currentFocus.id].key].description };
         } else if (this.currentFocus.type === SelectModes.SHELL) {
             panel.top = { 
-                shell: data.shells[this.shellNames[this.currentFocus.id]].name,
-                id: this.shellNames[this.currentFocus.id],
+                shell: data.shells[Layout.ShellsTable[this.currentFocus.id].key].name,
+                id: Layout.ShellsTable[this.currentFocus.id].key,
             };
-            panel.bottom = { description: data.shells[this.shellNames[this.currentFocus.id]].description };
+            panel.bottom = { description: data.shells[Layout.ShellsTable[this.currentFocus.id].key].description };
         }
 
         return {
@@ -325,9 +311,9 @@ class StateController {
     }
 
     _findElement(atomicNumber) {
-        for (var row = 0; row < PeriodicTable.LAYOUT.length; row++) {
-            for (var column = 0; column < PeriodicTable.LAYOUT[row].length; column++) {
-                if (PeriodicTable.LAYOUT[row][column] === atomicNumber) {
+        for (var row = 0; row < Layout.PeriodicTable.length; row++) {
+            for (var column = 0; column < Layout.PeriodicTable[row].length; column++) {
+                if (Layout.PeriodicTable[row][column] === atomicNumber) {
                     return { row: row, column: column };
                 }
             }
@@ -340,5 +326,5 @@ module.exports = {
     StateController: StateController,
     SelectModes: SelectModes,
     DisplayModes: DisplayModes,
-    PeriodicTable: PeriodicTable,
+    Layout: Layout,
 }
