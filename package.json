@@ -1,7 +1,7 @@
 {
   "name": "periodic-table-cli",
-  "version": "1.0.1",
-  "description": "Print the Periodic Table of Elements to the console!",
+  "version": "2.0.0",
+  "description": "An interactive Periodic Table of Elements app for the console!",
   "main": "./src/index.js",
   "bin": {
     "periodic-table-cli": "./src/cli.js"
@@ -13,10 +13,14 @@
     "type": "git",
     "url": "https://github.com/spirometaxas/periodic-table-cli.git"
   },
+  "homepage": "https://spirometaxas.com/projects/periodic-table-cli",
   "scripts": {
     "cli": "node ./src/cli.js"
   },
-  "author": "Spiro Metaxas",
+  "author": {
+    "name" : "Spiro Metaxas",
+    "url" : "https://spirometaxas.com"
+  },
   "license": "MIT",
   "keywords": [ 
     "Periodic Table", 
