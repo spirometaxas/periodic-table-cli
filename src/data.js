@@ -26,6 +26,8 @@ module.exports = {
             "period": 1,
             "shell": "s-shell",
             "specificHeat": "14.304 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 2,
@@ -45,10 +47,14 @@ module.exports = {
             "numberOfNeutrons": 2,
             "numberofProtons": 2,
             "numberofElectrons": 2,
+            "numberofValence": 2,
+            "valency": 0,
             "group": 18,
             "period": 1,
             "shell": "s-shell",
             "specificHeat": "5.193 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 3,
@@ -76,6 +82,8 @@ module.exports = {
             "period": 2,
             "shell": "s-shell",
             "specificHeat": "3.582 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 4,
@@ -102,6 +110,8 @@ module.exports = {
             "period": 2,
             "shell": "s-shell",
             "specificHeat": "1.825 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 5,
@@ -129,6 +139,8 @@ module.exports = {
             "period": 2,
             "shell": "p-shell",
             "specificHeat": "1.026 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 6,
@@ -156,6 +168,8 @@ module.exports = {
             "period": 2,
             "shell": "p-shell",
             "specificHeat": "0.709 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 7,
@@ -182,6 +196,8 @@ module.exports = {
             "period": 2,
             "shell": "p-shell",
             "specificHeat": "1.040 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 8,
@@ -209,6 +225,8 @@ module.exports = {
             "period": 2,
             "shell": "p-shell",
             "specificHeat": "0.918 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 9,
@@ -236,6 +254,8 @@ module.exports = {
             "period": 2,
             "shell": "p-shell",
             "specificHeat": "0.824 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 10,
@@ -261,6 +281,8 @@ module.exports = {
             "period": 2,
             "shell": "p-shell",
             "specificHeat": "1.030 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 11,
@@ -288,6 +310,8 @@ module.exports = {
             "period": 3,
             "shell": "s-shell",
             "specificHeat": "1.228 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 12,
@@ -314,6 +338,8 @@ module.exports = {
             "period": 3,
             "shell": "s-shell",
             "specificHeat": "1.023 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 13,
@@ -341,6 +367,8 @@ module.exports = {
             "period": 3,
             "shell": "p-shell",
             "specificHeat": "0.897 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 14,
@@ -368,6 +396,8 @@ module.exports = {
             "period": 3,
             "shell": "p-shell",
             "specificHeat": "0.705 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 15,
@@ -395,6 +425,8 @@ module.exports = {
             "period": 3,
             "shell": "p-shell",
             "specificHeat": "0.769 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 16,
@@ -422,6 +454,8 @@ module.exports = {
             "period": 3,
             "shell": "p-shell",
             "specificHeat": "0.710 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 17,
@@ -449,6 +483,8 @@ module.exports = {
             "period": 3,
             "shell": "p-shell",
             "specificHeat": "0.479 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 18,
@@ -474,6 +510,8 @@ module.exports = {
             "period": 3,
             "shell": "p-shell",
             "specificHeat": "0.520 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 19,
@@ -501,6 +539,8 @@ module.exports = {
             "period": 4,
             "shell": "s-shell",
             "specificHeat": "0.757 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 20,
@@ -527,6 +567,8 @@ module.exports = {
             "period": 4,
             "shell": "s-shell",
             "specificHeat": "0.647 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 21,
@@ -552,6 +594,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.568 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 22,
@@ -577,6 +621,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.523 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 23,
@@ -602,6 +648,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.489 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 24,
@@ -627,6 +675,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.449 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 25,
@@ -651,6 +701,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.479 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 26,
@@ -676,6 +728,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.449 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 27,
@@ -701,6 +755,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.421 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 28,
@@ -726,6 +782,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.444 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 29,
@@ -751,6 +809,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.385 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 30,
@@ -775,6 +835,8 @@ module.exports = {
             "period": 4,
             "shell": "d-shell",
             "specificHeat": "0.388 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 31,
@@ -802,6 +864,8 @@ module.exports = {
             "period": 4,
             "shell": "p-shell",
             "specificHeat": "0.371 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 32,
@@ -829,6 +893,8 @@ module.exports = {
             "period": 4,
             "shell": "p-shell",
             "specificHeat": "0.320 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 33,
@@ -856,6 +922,8 @@ module.exports = {
             "period": 4,
             "shell": "p-shell",
             "specificHeat": "0.329 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 34,
@@ -883,6 +951,8 @@ module.exports = {
             "period": 4,
             "shell": "p-shell",
             "specificHeat": "0.321 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 35,
@@ -910,6 +980,8 @@ module.exports = {
             "period": 4,
             "shell": "p-shell",
             "specificHeat": "0.474 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 36,
@@ -936,6 +1008,8 @@ module.exports = {
             "period": 4,
             "shell": "p-shell",
             "specificHeat": "0.248 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 37,
@@ -963,6 +1037,8 @@ module.exports = {
             "period": 5,
             "shell": "s-shell",
             "specificHeat": "0.363 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 38,
@@ -989,6 +1065,8 @@ module.exports = {
             "period": 5,
             "shell": "s-shell",
             "specificHeat": "0.301 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 39,
@@ -1014,6 +1092,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.298 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 40,
@@ -1039,6 +1119,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.278 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 41,
@@ -1064,6 +1146,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.265 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 42,
@@ -1089,6 +1173,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.251 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 43,
@@ -1113,6 +1199,8 @@ module.exports = {
             "group": 7,
             "period": 5,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 44,
@@ -1138,6 +1226,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.238 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 45,
@@ -1163,6 +1253,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.243 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 46,
@@ -1188,6 +1280,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.244 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 47,
@@ -1213,6 +1307,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.235 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 48,
@@ -1237,6 +1333,8 @@ module.exports = {
             "period": 5,
             "shell": "d-shell",
             "specificHeat": "0.232 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 49,
@@ -1264,6 +1362,8 @@ module.exports = {
             "period": 5,
             "shell": "p-shell",
             "specificHeat": "0.233 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 50,
@@ -1291,6 +1391,8 @@ module.exports = {
             "period": 5,
             "shell": "p-shell",
             "specificHeat": "0.228 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 51,
@@ -1318,6 +1420,8 @@ module.exports = {
             "period": 5,
             "shell": "p-shell",
             "specificHeat": "0.207 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 52,
@@ -1345,6 +1449,8 @@ module.exports = {
             "period": 5,
             "shell": "p-shell",
             "specificHeat": "0.202 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 53,
@@ -1372,6 +1478,8 @@ module.exports = {
             "period": 5,
             "shell": "p-shell",
             "specificHeat": "0.214 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 54,
@@ -1398,6 +1506,8 @@ module.exports = {
             "period": 5,
             "shell": "p-shell",
             "specificHeat": "0.158 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 55,
@@ -1425,6 +1535,8 @@ module.exports = {
             "period": 6,
             "shell": "s-shell",
             "specificHeat": "0.242 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 56,
@@ -1451,6 +1563,8 @@ module.exports = {
             "period": 6,
             "shell": "s-shell",
             "specificHeat": "0.204 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 57,
@@ -1476,6 +1590,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.195 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 58,
@@ -1500,6 +1616,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.192 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 59,
@@ -1523,6 +1641,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.193 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 60,
@@ -1546,6 +1666,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.190 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 61,
@@ -1567,6 +1689,8 @@ module.exports = {
             "numberofElectrons": 61,
             "period": 6,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 62,
@@ -1590,6 +1714,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.197 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 63,
@@ -1612,6 +1738,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.182 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 64,
@@ -1635,6 +1763,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.236 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 65,
@@ -1657,6 +1787,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.182 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 66,
@@ -1680,6 +1812,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.170 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 67,
@@ -1703,6 +1837,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.165 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 68,
@@ -1726,6 +1862,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.168 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 69,
@@ -1749,6 +1887,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.160 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 70,
@@ -1771,6 +1911,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.155 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 71,
@@ -1794,6 +1936,8 @@ module.exports = {
             "period": 6,
             "shell": "f-shell",
             "specificHeat": "0.154 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 72,
@@ -1818,6 +1962,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.144 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 73,
@@ -1843,6 +1989,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.140 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 74,
@@ -1868,6 +2016,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.132 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 75,
@@ -1893,6 +2043,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.137 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 76,
@@ -1918,6 +2070,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.130 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 77,
@@ -1943,6 +2097,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.131 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 78,
@@ -1968,6 +2124,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.133 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 79,
@@ -1993,6 +2151,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.129 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 80,
@@ -2017,6 +2177,8 @@ module.exports = {
             "period": 6,
             "shell": "d-shell",
             "specificHeat": "0.140 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 81,
@@ -2044,6 +2206,8 @@ module.exports = {
             "period": 6,
             "shell": "p-shell",
             "specificHeat": "0.129 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 82,
@@ -2071,6 +2235,8 @@ module.exports = {
             "period": 6,
             "shell": "p-shell",
             "specificHeat": "0.129 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 83,
@@ -2098,6 +2264,8 @@ module.exports = {
             "period": 6,
             "shell": "p-shell",
             "specificHeat": "0.122 J/g K",
+            "radioactive": false,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 84,
@@ -2124,6 +2292,8 @@ module.exports = {
             "group": 16,
             "period": 6,
             "shell": "p-shell",
+            "radioactive": true,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 85,
@@ -2149,6 +2319,8 @@ module.exports = {
             "group": 17,
             "period": 6,
             "shell": "p-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 86,
@@ -2174,6 +2346,8 @@ module.exports = {
             "period": 6,
             "shell": "p-shell",
             "specificHeat": "0.094 J/g K",
+            "radioactive": true,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 87,
@@ -2198,6 +2372,8 @@ module.exports = {
             "group": 1,
             "period": 7,
             "shell": "s-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 88,
@@ -2223,6 +2399,8 @@ module.exports = {
             "group": 2,
             "period": 7,
             "shell": "s-shell",
+            "radioactive": true,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 89,
@@ -2247,6 +2425,8 @@ module.exports = {
             "period": 7,
             "shell": "f-shell",
             "specificHeat": "0.120 J/g K",
+            "radioactive": true,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 90,
@@ -2270,6 +2450,8 @@ module.exports = {
             "period": 7,
             "shell": "f-shell",
             "specificHeat": "0.113 J/g K",
+            "radioactive": true,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 91,
@@ -2291,6 +2473,8 @@ module.exports = {
             "numberofElectrons": 91,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 92,
@@ -2314,6 +2498,8 @@ module.exports = {
             "period": 7,
             "shell": "f-shell",
             "specificHeat": "0.116 J/g K",
+            "radioactive": true,
+            "occurrence": "Natural",
         },
         {
             "atomicNumber": 93,
@@ -2336,6 +2522,8 @@ module.exports = {
             "numberofElectrons": 93,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 94,
@@ -2358,6 +2546,8 @@ module.exports = {
             "numberofElectrons": 94,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 95,
@@ -2380,6 +2570,8 @@ module.exports = {
             "numberofElectrons": 95,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 96,
@@ -2402,6 +2594,8 @@ module.exports = {
             "numberofElectrons": 96,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 97,
@@ -2423,6 +2617,8 @@ module.exports = {
             "numberofElectrons": 97,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 98,
@@ -2443,6 +2639,8 @@ module.exports = {
             "numberofElectrons": 98,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Rare",
         },
         {
             "atomicNumber": 99,
@@ -2463,6 +2661,8 @@ module.exports = {
             "numberofElectrons": 99,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 100,
@@ -2482,6 +2682,8 @@ module.exports = {
             "numberofElectrons": 100,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 101,
@@ -2501,6 +2703,8 @@ module.exports = {
             "numberofElectrons": 101,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 102,
@@ -2520,6 +2724,8 @@ module.exports = {
             "numberofElectrons": 102,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 103,
@@ -2538,6 +2744,8 @@ module.exports = {
             "numberofElectrons": 103,
             "period": 7,
             "shell": "f-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 104,
@@ -2555,6 +2763,8 @@ module.exports = {
             "group": 4,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 105,
@@ -2572,6 +2782,8 @@ module.exports = {
             "group": 5,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 106,
@@ -2589,6 +2801,8 @@ module.exports = {
             "group": 6,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 107,
@@ -2606,6 +2820,8 @@ module.exports = {
             "group": 7,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 108,
@@ -2623,6 +2839,8 @@ module.exports = {
             "group": 8,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 109,
@@ -2640,6 +2858,8 @@ module.exports = {
             "group": 9,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 110,
@@ -2657,6 +2877,8 @@ module.exports = {
             "group": 10,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 111,
@@ -2674,6 +2896,8 @@ module.exports = {
             "group": 11,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 112,
@@ -2691,6 +2915,8 @@ module.exports = {
             "group": 12,
             "period": 7,
             "shell": "d-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 113,
@@ -2709,6 +2935,8 @@ module.exports = {
             "group": 13,
             "period": 7,
             "shell": "p-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 114,
@@ -2728,6 +2956,8 @@ module.exports = {
             "group": 14,
             "period": 7,
             "shell": "p-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 115,
@@ -2747,6 +2977,8 @@ module.exports = {
             "group": 15,
             "period": 7,
             "shell": "p-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 116,
@@ -2766,6 +2998,8 @@ module.exports = {
             "group": 16,
             "period": 7,
             "shell": "p-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 117,
@@ -2785,6 +3019,8 @@ module.exports = {
             "group": 17,
             "period": 7,
             "shell": "p-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
         {
             "atomicNumber": 118,
@@ -2804,6 +3040,8 @@ module.exports = {
             "group": 18,
             "period": 7,
             "shell": "p-shell",
+            "radioactive": true,
+            "occurrence": "Synthetic",
         },
     ],
     families: {

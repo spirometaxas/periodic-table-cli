@@ -5,6 +5,18 @@ const { Utils } = require('./utils.js');
 
 const printUsage = function() {
     console.log('\n' + 
+                '           ╔═╗                               ╔═╗ \n' +
+                '           ╠═╬═╗                   ╔═╦═╦═╦═╦═╬═╣ \n' +
+                '           ╠═╬═╣                   ╠═╬═╬═╬═╬═╬═╣ \n' +
+                '           ╠═╬═╬═╦═╦═╦═╦═╦═╦═╦═╦═╦═╬═╬═╬═╬═╬═╬═╣ \n' +
+                '           ╠═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╣ \n' +
+                '           ╠═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╣ \n' +
+                '           ╠═╬═╣:╠═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╣ \n' +
+                '           ╚═╩═╝ ╚═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╝ \n' +
+                '               ╔═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╗   \n' +
+                '              :╠═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╣   \n' +
+                '               ╚═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╝   \n' +
+                '\n' +
                 ' An interactive Periodic Table of Elements app for the console!\n' +
                 '\n' +
                 ' Interactive Controls:\n' + 
@@ -58,7 +70,7 @@ const isChart = function(flags) {
 
 const isHelp = function(flags) {
     for (let i = 0; i < flags.length; i++) {
-        if (flags[i] && flags[i].toLowerCase() === '--help') {
+        if (flags[i] && (flags[i].toLowerCase() === '--help' || flags[i].toLowerCase() === '-h')) {
             return true;
         }
     }

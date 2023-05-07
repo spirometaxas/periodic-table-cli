@@ -3,15 +3,32 @@ const data = require('./data.js');
 
 class SelectModes {
     static ELEMENT = 'element';
-    static FAMILY = 'family';
-    static SHELL = 'shell';
+    static FAMILY  = 'family';
+    static SHELL   = 'shell';
 }
 
 class DisplayModes {
-    static STANDARD = 'standard';
-    static FAMILIES = 'families';
-    static SHELLS = 'shells';
-    static STATES = 'states';
+    static STANDARD          = { name: 'standard'                                                   };
+    static FAMILIES          = { name: 'families'                                                   };
+    static SHELLS            = { name: 'shells'                                                     };
+    static STATES            = { name: 'states',            key: 'standardState'                    };
+    static ATOMIC_MASS       = { name: 'atomicMass',        key: 'atomicMass',        isMeter: true };
+    static PROTONS           = { name: 'protons',           key: 'numberofProtons',   isMeter: true };
+    static NEUTRONS          = { name: 'neutrons',          key: 'numberOfNeutrons',  isMeter: true };
+    static ELECTRONS         = { name: 'electrons',         key: 'numberofElectrons', isMeter: true };
+    static VALENCE_ELECTRONS = { name: 'numberofValence',   key: 'numberofValence'                  };
+    static VALENCY           = { name: 'valency',           key: 'valency'                          };
+    static ATOMIC_RADIUS     = { name: 'atomicRadius',      key: 'atomicRadius',      isMeter: true };
+    static DENSITY           = { name: 'density',           key: 'density',           isMeter: true };
+    static ELECTRONEGATIVITY = { name: 'electronegativity', key: 'electronegativity', isMeter: true };
+    static IONIZATION_ENERGY = { name: 'ionizationEnergy',  key: 'ionizationEnergy',  isMeter: true };
+    static ELECTRON_AFFINITY = { name: 'electronAffinity',  key: 'electronAffinity',  isMeter: true };
+    static MELTING_POINT     = { name: 'meltingPoint',      key: 'meltingPoint',      isMeter: true };
+    static BOILING_POINT     = { name: 'boilingPoint',      key: 'boilingPoint',      isMeter: true };
+    static SPECIFIC_HEAT     = { name: 'specificHeat',      key: 'specificHeat',      isMeter: true };
+    static RADIOACTIVE       = { name: 'radioactive',       key: 'radioactive'                      };
+    static OCCURRENCE        = { name: 'occurrence',        key: 'occurrence'                       };
+    static YEAR              = { name: 'yearDiscovered',    key: 'yearDiscovered',    isMeter: true };
 }
 
 class Layout {
@@ -39,26 +56,28 @@ class Layout {
     ];
 
     static PanelData = [
-        { key: "atomicNumber",          name: "Atomic Number"     },
-        { key: "symbol",                name: "Symbol"            },
-        { key: "atomicMass",            name: "Atomic Mass"       },
-        { key: "numberofProtons",       name: "Protons"           },
-        { key: "numberOfNeutrons",      name: "Neutrons"          },
-        { key: "numberofElectrons",     name: "Electrons"         },
-        { key: "numberofValence",       name: "Valence Electrons" },
-        { key: "valency",               name: "Valency"           },
-        { key: "atomicRadius",          name: "Atomic Radius"     },
-        { key: "density",               name: "Density"           },
-        { key: "electronegativity",     name: "Electronegativity" },
-        { key: "ionizationEnergy",      name: "Ionization Energy" },
-        { key: "electronAffinity",      name: "Electron Affinity" },
-        { key: "standardState",         name: "State"             },
-        { key: "meltingPoint",          name: "Melting Point"     },
-        { key: "boilingPoint",          name: "Boiling Point"     },
-        { key: "specificHeat",          name: "Specific Heat"     },
-        { key: "yearDiscovered",        name: "Year"              },
-        { key: "electronConfiguration", name: "Electron Config"   },
-        { key: "oxidationStates",       name: "Oxidation States"  },
+        { key: 'atomicNumber',          name: 'Atomic Number'     },
+        { key: 'symbol',                name: 'Symbol'            },
+        { key: 'standardState',         name: 'State'             },
+        { key: 'atomicMass',            name: 'Atomic Mass'       },
+        { key: 'numberofProtons',       name: 'Protons'           },
+        { key: 'numberOfNeutrons',      name: 'Neutrons'          },
+        { key: 'numberofElectrons',     name: 'Electrons'         },
+        { key: 'numberofValence',       name: 'Valence Electrons' },
+        { key: 'valency',               name: 'Valency'           },
+        { key: 'atomicRadius',          name: 'Atomic Radius'     },
+        { key: 'density',               name: 'Density'           },
+        { key: 'electronegativity',     name: 'Electronegativity' },
+        { key: 'ionizationEnergy',      name: 'Ionization Energy' },
+        { key: 'electronAffinity',      name: 'Electron Affinity' },
+        { key: 'meltingPoint',          name: 'Melting Point'     },
+        { key: 'boilingPoint',          name: 'Boiling Point'     },
+        { key: 'specificHeat',          name: 'Specific Heat'     },
+        { key: 'radioactive',           name: 'Radioactive'       },
+        { key: 'occurrence',            name: 'Occurrence'        },
+        { key: 'yearDiscovered',        name: 'Year'              },
+        { key: 'electronConfiguration', name: 'Electron Config'   },
+        { key: 'oxidationStates',       name: 'Oxidation States'  },
     ];
 
 }
@@ -70,6 +89,23 @@ class StateController {
         DisplayModes.FAMILIES,
         DisplayModes.SHELLS,
         DisplayModes.STATES,
+        DisplayModes.ATOMIC_MASS,
+        DisplayModes.PROTONS,
+        DisplayModes.NEUTRONS,
+        DisplayModes.ELECTRONS,
+        DisplayModes.VALENCE_ELECTRONS,
+        DisplayModes.VALENCY,
+        DisplayModes.ATOMIC_RADIUS,
+        DisplayModes.DENSITY,
+        DisplayModes.ELECTRONEGATIVITY,
+        DisplayModes.IONIZATION_ENERGY,
+        DisplayModes.ELECTRON_AFFINITY,
+        DisplayModes.MELTING_POINT,
+        DisplayModes.BOILING_POINT,
+        DisplayModes.SPECIFIC_HEAT,
+        DisplayModes.RADIOACTIVE,
+        DisplayModes.OCCURRENCE,
+        DisplayModes.YEAR,
     ];
 
     constructor(config) {
@@ -80,6 +116,49 @@ class StateController {
         }
         this.elements = Utils.getElements(data.elements);
         this.currentDisplayMode = DisplayModes.STANDARD;
+
+        this.initMeterConfig();
+    }
+
+    initMeterConfig() {
+        const fieldFormatters = {
+            'atomicMass':        (v) => Utils.parseNumber(v, ' u'.length),
+            'numberofProtons':   (v) => Utils.parseNumber(v),
+            'numberOfNeutrons':  (v) => Utils.parseNumber(v),
+            'numberofElectrons': (v) => Utils.parseNumber(v),
+            'numberofValence':   (v) => Utils.parseNumber(v),
+            'valency':           (v) => Utils.parseNumber(v),
+            'atomicRadius':      (v) => Utils.parseNumber(v, ' pm'.length),
+            'density':           (v) => Utils.parseNumber(v, ' g/cm^3'.length),
+            'electronegativity': (v) => Utils.parseNumber(v),
+            'ionizationEnergy':  (v) => Utils.parseNumber(v, ' eV'.length),
+            'electronAffinity':  (v) => Utils.parseNumber(v, ' eV'.length),
+            'meltingPoint':      (v) => Utils.parseNumber(v, ' K'.length),
+            'boilingPoint':      (v) => Utils.parseNumber(v, ' K'.length),
+            'specificHeat':      (v) => Utils.parseNumber(v, ' J/g K'.length),
+            'yearDiscovered':    (v) => Utils.parseNumber(v),
+        };
+
+        const fieldConfigs = {};
+
+        for (const mode of this.displayModeOrder) {
+            if (mode.isMeter) {
+                const fieldList = Utils.getValuesForElementField(Object.values(this.elements), mode.key, fieldFormatters[mode.key]);
+                fieldConfigs[mode.key] = { minValue: Utils.getMinValue(fieldList), maxValue: Utils.getMaxValue(fieldList) };
+            }
+        }
+
+        for (let atomicNumber in this.elements) {
+            const element = this.elements[atomicNumber];
+            element.meterConfig = {};
+
+            for (const mode of this.displayModeOrder) {
+                if (mode.isMeter) {
+                    const fieldValue = element[mode.key];
+                    element.meterConfig[mode.key] = Utils.getMeterValue(fieldFormatters[mode.key](fieldValue), fieldConfigs[mode.key]);
+                }
+            }
+        }
     }
 
     processLeft() {
@@ -250,6 +329,19 @@ class StateController {
                         config.display = { shell: this.elements[Layout.PeriodicTable[r][c]].shell };
                     } else if (this.currentDisplayMode === DisplayModes.STATES) {
                         config.display = { state: this.elements[Layout.PeriodicTable[r][c]].standardState };
+                    } else if (this.currentDisplayMode === DisplayModes.VALENCE_ELECTRONS) {
+                        config.display = { valenceElectrons: this.elements[Layout.PeriodicTable[r][c]].numberofValence };
+                    } else if (this.currentDisplayMode === DisplayModes.VALENCY) {
+                        config.display = { valency: this.elements[Layout.PeriodicTable[r][c]].valency };
+                    } else if (this.currentDisplayMode === DisplayModes.RADIOACTIVE) {
+                        config.display = { radioactive: this.elements[Layout.PeriodicTable[r][c]].radioactive };
+                    } else if (this.currentDisplayMode === DisplayModes.OCCURRENCE) {
+                        config.display = { occurrence: this.elements[Layout.PeriodicTable[r][c]].occurrence };
+                    } else if (this.currentDisplayMode && this.currentDisplayMode.isMeter) {
+                        config.display = { meter: this.elements[Layout.PeriodicTable[r][c]].meterConfig[this.currentDisplayMode.key] };
+                        if (this.currentDisplayMode === DisplayModes.YEAR) {
+                            config.display.isAncient = this.elements[Layout.PeriodicTable[r][c]][this.currentDisplayMode.key] === 'Ancient' ? true : undefined;
+                        }
                     }
                     board[Layout.PeriodicTable[r][c]] = config;
                 }
@@ -279,11 +371,7 @@ class StateController {
             panel.bottom = { list: [] };
             for (const keyConfig of Layout.PanelData) {
                 const value = this.elements[this.currentFocus.id][keyConfig.key];
-                if (value !== undefined) {
-                    panel.bottom.list.push({ key: keyConfig.name, value: String(value) });
-                } else {
-                    panel.bottom.list.push({ key: keyConfig.name, value: '-', empty: true });
-                }
+                panel.bottom.list.push({ key: keyConfig.name, value: value });
             }
         } else if (this.currentFocus.type === SelectModes.FAMILY) {
             panel.top = { 

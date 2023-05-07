@@ -22,6 +22,25 @@ class Colors {
     static BLUE        = { FG: '\u001b[38;5;27m',  BG: '\u001b[48;5;27m'  };
     static MAGENTA     = { FG: '\u001b[38;5;207m', BG: '\u001b[48;5;207m' };
     static PURPLE      = { FG: '\u001b[38;5;93m',  BG: '\u001b[48;5;93m'  };
+
+    static METER_COLORS = [
+        { FG: '\u001b[38;5;51m',  BG: '\u001b[48;5;51m'  },
+        { FG: '\u001b[38;5;50m',  BG: '\u001b[48;5;50m'  },
+        { FG: '\u001b[38;5;49m',  BG: '\u001b[48;5;49m'  },
+        { FG: '\u001b[38;5;48m',  BG: '\u001b[48;5;48m'  },
+        { FG: '\u001b[38;5;47m',  BG: '\u001b[48;5;47m'  },
+        { FG: '\u001b[38;5;46m',  BG: '\u001b[48;5;46m'  },
+        { FG: '\u001b[38;5;82m',  BG: '\u001b[48;5;82m'  },
+        { FG: '\u001b[38;5;118m', BG: '\u001b[48;5;118m' },
+        { FG: '\u001b[38;5;154m', BG: '\u001b[48;5;154m' },
+        { FG: '\u001b[38;5;190m', BG: '\u001b[48;5;190m' },
+        { FG: '\u001b[38;5;226m', BG: '\u001b[48;5;226m' },
+        { FG: '\u001b[38;5;220m', BG: '\u001b[48;5;220m' },
+        { FG: '\u001b[38;5;214m', BG: '\u001b[48;5;214m' },
+        { FG: '\u001b[38;5;208m', BG: '\u001b[48;5;208m' },
+        { FG: '\u001b[38;5;202m', BG: '\u001b[48;5;202m' },
+        { FG: '\u001b[38;5;196m', BG: '\u001b[48;5;196m' },
+    ];
 }
 
 class Dashboard {
@@ -80,6 +99,52 @@ class Dashboard {
         'Gas **':    { color: Colors.BLUE     },
     };
 
+    VALENCE_ELECTRON_CONFIG = {
+        colors: {
+            1: { color: Colors.PURPLE   },
+            2: { color: Colors.MAGENTA  },
+            3: { color: Colors.BLUE     },
+            4: { color: Colors.SKY_BLUE },
+            5: { color: Colors.GREEN    },
+            6: { color: Colors.YELLOW   },
+            7: { color: Colors.ORANGE   },
+            8: { color: Colors.RED      },
+        },
+        minValue: 1,
+        maxValue: 8,
+    };
+
+    VALENCY_CONFIG = {
+        colors: {
+            0: { color: Colors.SKY_BLUE },
+            1: { color: Colors.GREEN    },
+            2: { color: Colors.YELLOW   },
+            3: { color: Colors.ORANGE   },
+            4: { color: Colors.RED      },
+        },
+        minValue: 0,
+        maxValue: 4,
+    };
+
+    RADIOACTIVE_CONFIG = {
+        true:  { color: Colors.RED   },
+        false: { color: Colors.GREEN },
+    };
+
+    OCCURRENCE_CONFIG = {
+        'Natural':   { color: Colors.SKY_BLUE },
+        'Rare':      { color: Colors.YELLOW   },
+        'Synthetic': { color: Colors.ORANGE   },
+    };
+
+    YEAR_CONFIG = {
+        minValue: 1669,
+        maxValue: 2010,
+        colors: {
+            ANCIENT: Colors.WHITE,
+        },
+    };
+
     PERIOD_POS = {
         1: { x: 1, y:  3, length: 1 },
         2: { x: 1, y:  6, length: 1 },
@@ -116,6 +181,14 @@ class Dashboard {
         LIST_POS: { x: 117, y: 5 },
         WIDTH: 36,
         HEIGHT: 26,
+    };
+
+    TITLES = {
+        THE_PERIODIC_TABLE_OF_ELEMENTS: { x:  30, y:  2, length: 30 },  // The Periodic Table of Elements
+        ELEMENT_FAMILIES:               { x:  49, y: 34, length: 16 },  // Element Families
+        ELEMENT_CONFIGURATIONS:         { x:  46, y: 41, length: 23 },  // Element Configurations
+        DISPLAY_MODES:                  { x: 129, y: 34, length: 12 },  // Display Mode
+        CONTROLS:                       { x: 131, y: 39, length:  8 },  // Controls
     };
 
     constructor() {
@@ -236,11 +309,9 @@ class Dashboard {
     }
 
     _decorateTitles() {
-        this._makeBold(30, 2, 30);    // The Periodic Table of Elements
-        this._makeBold(49, 34, 16);   // Element Families
-        this._makeBold(46, 41, 23);   // Element Configurations
-        this._makeBold(129, 34, 12);  // Display Mode
-        this._makeBold(131, 39, 8);   // Controls
+        for (const title in this.TITLES) {
+            this._makeBold(this.TITLES[title].x, this.TITLES[title].y, this.TITLES[title].length);
+        }
     }
 
     _getElementFillColor(element, displayMode) {
@@ -252,6 +323,23 @@ class Dashboard {
             return this.SHELLS_CONFIG[element.display.shell].color;
         } else if (displayMode === DisplayModes.STATES) {
             return this.STATES_CONFIG[element.display.state].color;
+        } else if (displayMode === DisplayModes.VALENCE_ELECTRONS) {
+            const config = this.VALENCE_ELECTRON_CONFIG.colors[element.display.valenceElectrons];
+            return config ? config.color : undefined;
+        } else if (displayMode === DisplayModes.VALENCY) {
+            const config = this.VALENCY_CONFIG.colors[element.display.valency];
+            return config ? config.color : undefined;
+        } else if (displayMode === DisplayModes.RADIOACTIVE) {
+            const config = this.RADIOACTIVE_CONFIG[element.display.radioactive];
+            return config ? config.color : undefined;
+        } else if (displayMode === DisplayModes.OCCURRENCE) {
+            const config = this.OCCURRENCE_CONFIG[element.display.occurrence];
+            return config ? config.color : undefined;
+        } else if (element.display.meter !== undefined) {
+            const colorIndex = Utils.getBucketValue(element.display.meter, Colors.METER_COLORS.length);
+            return Colors.METER_COLORS[colorIndex];
+        } else if (element.display.isAncient) {
+            return this.YEAR_CONFIG.colors.ANCIENT;
         }
     }
 
@@ -459,8 +547,10 @@ class Dashboard {
             this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, 'STANDARD', this.DISPLAY_CONFIG.length, 'center');
         } else if (config.displayMode === DisplayModes.FAMILIES) {
             this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, 'ELEMENT FAMILIES', this.DISPLAY_CONFIG.length, 'center');
+            this._setHighlightColor(this.TITLES.ELEMENT_FAMILIES.x - 2, this.TITLES.ELEMENT_FAMILIES.y, this.TITLES.ELEMENT_FAMILIES.length + 4, Colors.WHITE);
         } else if (config.displayMode === DisplayModes.SHELLS) {
             this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, 'ELECTRON CONFIGURATIONS', this.DISPLAY_CONFIG.length, 'center');
+            this._setHighlightColor(this.TITLES.ELEMENT_CONFIGURATIONS.x - 2, this.TITLES.ELEMENT_CONFIGURATIONS.y, this.TITLES.ELEMENT_CONFIGURATIONS.length + 4, Colors.WHITE);
         } else if (config.displayMode === DisplayModes.STATES) {
             const sectionLength = this.DISPLAY_CONFIG.length / 3;
             this._setHighlightColor(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, sectionLength - 1, this.STATES_CONFIG['Solid'].color);
@@ -471,7 +561,88 @@ class Dashboard {
 
             this._setHighlightColor(this.DISPLAY_CONFIG.x + (2 * sectionLength) + 1, this.DISPLAY_CONFIG.y, sectionLength - 1, this.STATES_CONFIG['Gas'].color);
             this._setText(this.DISPLAY_CONFIG.x + (2 * sectionLength) + 1, this.DISPLAY_CONFIG.y, 'GAS', sectionLength - 1, 'center');
+        } else if (config.displayMode === DisplayModes.VALENCE_ELECTRONS) {
+            const sectionLength = this.DISPLAY_CONFIG.length / 2;
+            const partLength = 2;
+            this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, 'VALENCE ELECTRONS', sectionLength, 'center');
+            var count = 0;
+            for (let i = this.VALENCE_ELECTRON_CONFIG.minValue; i <= this.VALENCE_ELECTRON_CONFIG.maxValue; i++) {
+                this._setHighlightColor(this.DISPLAY_CONFIG.x + sectionLength + (count * partLength) + 2, this.DISPLAY_CONFIG.y, partLength, this.VALENCE_ELECTRON_CONFIG.colors[i].color);
+                this._setText(this.DISPLAY_CONFIG.x + sectionLength + (count * partLength) + 2, this.DISPLAY_CONFIG.y, ' ' + i, partLength, 'left');
+                count++;
+            }
+        } else if (config.displayMode === DisplayModes.VALENCY) {
+            const sectionLength = this.DISPLAY_CONFIG.length / 2;
+            const partLength = 3;
+            this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, 'VALENCY', sectionLength, 'center');
+            var count = 0;
+            for (let i = this.VALENCY_CONFIG.minValue; i <= this.VALENCY_CONFIG.maxValue; i++) {
+                this._setHighlightColor(this.DISPLAY_CONFIG.x + sectionLength + (count * partLength) + 3, this.DISPLAY_CONFIG.y, partLength, this.VALENCY_CONFIG.colors[i].color);
+                this._setText(this.DISPLAY_CONFIG.x + sectionLength + (count * partLength) + 3, this.DISPLAY_CONFIG.y, String(i), partLength, 'center');
+                count++;
+            }
+        } else if (config.displayMode === DisplayModes.RADIOACTIVE) {
+            const sectionLength = this.DISPLAY_CONFIG.length / 2;
+            this._setHighlightColor(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, sectionLength - 1, this.RADIOACTIVE_CONFIG[true].color);
+            this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, 'RADIOACTIVE', sectionLength - 1, 'center');
+            
+            this._setHighlightColor(this.DISPLAY_CONFIG.x + sectionLength, this.DISPLAY_CONFIG.y, sectionLength, this.RADIOACTIVE_CONFIG[false].color);
+            this._setText(this.DISPLAY_CONFIG.x + sectionLength, this.DISPLAY_CONFIG.y, 'STABLE', sectionLength, 'center');
+        } else if (config.displayMode === DisplayModes.OCCURRENCE) {
+            const sectionLength = this.DISPLAY_CONFIG.length / 3;
+            this._setHighlightColor(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, sectionLength - 1, this.OCCURRENCE_CONFIG['Natural'].color);
+            this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, 'NATURAL', sectionLength - 1, 'center');
+            
+            this._setHighlightColor(this.DISPLAY_CONFIG.x + sectionLength, this.DISPLAY_CONFIG.y, sectionLength, this.OCCURRENCE_CONFIG['Rare'].color);
+            this._setText(this.DISPLAY_CONFIG.x + sectionLength, this.DISPLAY_CONFIG.y, 'RARE', sectionLength, 'center');
+
+            this._setHighlightColor(this.DISPLAY_CONFIG.x + (2 * sectionLength) + 1, this.DISPLAY_CONFIG.y, sectionLength - 1, this.OCCURRENCE_CONFIG['Synthetic'].color);
+            this._setText(this.DISPLAY_CONFIG.x + (2 * sectionLength) + 1, this.DISPLAY_CONFIG.y, 'SYNTHETIC', sectionLength - 1, 'center');
+        } else if (config.displayMode === DisplayModes.YEAR) {
+            const sectionLength = this.DISPLAY_CONFIG.length / 2;
+            this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, 'YEAR', sectionLength - 9, 'center');
+
+            this._setHighlightColor(this.DISPLAY_CONFIG.x + sectionLength - 8, this.DISPLAY_CONFIG.y, 9, this.YEAR_CONFIG.colors.ANCIENT);
+            this._setText(this.DISPLAY_CONFIG.x + sectionLength - 8, this.DISPLAY_CONFIG.y, 'ANCIENT', 9, 'center');
+
+            for (let i = 0; i < Colors.METER_COLORS.length; i++) {
+                this._setHighlightColor(this.DISPLAY_CONFIG.x + sectionLength + i + 2, this.DISPLAY_CONFIG.y, 1, Colors.METER_COLORS[i]);
+            }
+            this._setTextColor(this.DISPLAY_CONFIG.x + sectionLength + 3, this.DISPLAY_CONFIG.y, 4, Colors.BLACK, false);
+            this._setText(this.DISPLAY_CONFIG.x + sectionLength + 3, this.DISPLAY_CONFIG.y, String(this.YEAR_CONFIG.minValue), 4, 'left');
+
+            this._setTextColor(this.DISPLAY_CONFIG.x + (2 * sectionLength) - 5, this.DISPLAY_CONFIG.y, 4, Colors.BLACK, false);
+            this._setText(this.DISPLAY_CONFIG.x + (2 * sectionLength) - 5, this.DISPLAY_CONFIG.y, String(this.YEAR_CONFIG.maxValue), 4, 'left');
+        } else if (config.displayMode && config.displayMode.isMeter) {
+            const sectionLength = this.DISPLAY_CONFIG.length / 2;
+            this._setText(this.DISPLAY_CONFIG.x, this.DISPLAY_CONFIG.y, this._getFieldName(config.displayMode.key).toUpperCase(), sectionLength, 'center');
+            for (let i = 0; i < Colors.METER_COLORS.length; i++) {
+                this._setHighlightColor(this.DISPLAY_CONFIG.x + sectionLength + i + 2, this.DISPLAY_CONFIG.y, 1, Colors.METER_COLORS[i]);
+            }
+            this._setTextColor(this.DISPLAY_CONFIG.x + sectionLength + 3, this.DISPLAY_CONFIG.y, 3, Colors.BLACK, false);
+            this._setText(this.DISPLAY_CONFIG.x + sectionLength + 3, this.DISPLAY_CONFIG.y, 'MIN', 3, 'left');
+
+            this._setTextColor(this.DISPLAY_CONFIG.x + (2 * sectionLength) - 4, this.DISPLAY_CONFIG.y, 3, Colors.BLACK, false);
+            this._setText(this.DISPLAY_CONFIG.x + (2 * sectionLength) - 4, this.DISPLAY_CONFIG.y, 'MAX', 3, 'left');
         }
+    }
+
+    _getFieldName(key) {
+        for (const data of Layout.PanelData)  {
+            if (data.key === key) {
+                return data.name;
+            }
+        }
+        return undefined;
+    }
+
+    _getFieldIndex(key) {
+        for (let i = 0; i < Layout.PanelData.length; i++)  {
+            if (Layout.PanelData[i].key === key) {
+                return i;
+            }
+        }
+        return undefined;
     }
 
     _getLinesFromDescription(text) {
@@ -518,24 +689,31 @@ class Dashboard {
                 this._setTextColor(this.PANEL_CONFIG.LIST_POS.x, currentY, this.PANEL_CONFIG.WIDTH / 2, Colors.GRAY, false);
                 this._setText(this.PANEL_CONFIG.TOP_POS.x, currentY, pair.key + ':', this.PANEL_CONFIG.WIDTH / 2, 'right');
 
-                if (pair.value.length + 1 > this.PANEL_CONFIG.WIDTH / 2) {
+                const value = this._getPanelValue(pair.value);
+                if (value.length + 1 > this.PANEL_CONFIG.WIDTH / 2) {
                     currentY++;
                     this._setTextColor(this.PANEL_CONFIG.LIST_POS.x, currentY, this.PANEL_CONFIG.WIDTH, Colors.WHITE, false);
-                    this._setText(this.PANEL_CONFIG.TOP_POS.x, currentY, ' ' + pair.value, this.PANEL_CONFIG.WIDTH, 'right');
+                    this._setText(this.PANEL_CONFIG.TOP_POS.x, currentY, ' ' + value, this.PANEL_CONFIG.WIDTH, 'right');
                 } else {
                     var color = Colors.WHITE;
-                    if (pair.empty) {
+                    if (pair.value === undefined) {
                         color = Colors.GRAY;
                     }
-                    this._setTextColor(this.PANEL_CONFIG.LIST_POS.x + (this.PANEL_CONFIG.WIDTH / 2), currentY, this.PANEL_CONFIG.WIDTH / 2, color, false);
-                    this._setText(this.PANEL_CONFIG.TOP_POS.x + (this.PANEL_CONFIG.WIDTH / 2), currentY, ' ' + pair.value, this.PANEL_CONFIG.WIDTH / 2, 'left');
-                }
 
-                if (pair.value.endsWith(' **')) {
-                    hasExpected = true;
+                    this._setTextColor(this.PANEL_CONFIG.LIST_POS.x + (this.PANEL_CONFIG.WIDTH / 2), currentY, this.PANEL_CONFIG.WIDTH / 2, color, false);
+                    this._setText(this.PANEL_CONFIG.TOP_POS.x + (this.PANEL_CONFIG.WIDTH / 2), currentY, ' ' + this._getPanelValue(pair.value), this.PANEL_CONFIG.WIDTH / 2, 'left');
+
+                    if (value !== undefined && value.endsWith(' **')) {
+                        hasExpected = true;
+                    }
                 }
 
                 currentY++;
+            }
+
+            if (config.displayMode && config.displayMode.key) {
+                const fieldIndex = this._getFieldIndex(config.displayMode.key);
+                this._setHighlightColor(this.PANEL_CONFIG.LIST_POS.x - 1, this.PANEL_CONFIG.LIST_POS.y + fieldIndex, this.PANEL_CONFIG.WIDTH + 2, Colors.WHITE);
             }
 
             if (hasExpected) {
@@ -550,6 +728,19 @@ class Dashboard {
                 this._setText(this.PANEL_CONFIG.TOP_POS.x, currentY, line, this.PANEL_CONFIG.WIDTH, 'left');
                 currentY++;
             }
+        }
+    }
+
+    _getPanelValue(value) {
+        if (value !== undefined) {
+            if (value === true) {
+                return 'Yes';
+            } else if (value === false) {
+                return 'No';
+            }
+            return String(value);
+        } else {
+            return '-';
         }
     }
 
