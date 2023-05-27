@@ -2,6 +2,7 @@ const periodic_table = require('./index.js');
 const { SelectModes, DisplayModes, Layout } = require('./statecontroller.js');
 const data = require('./data.js');
 const { Utils } = require('./utils.js');
+const { SearchResultType } = require('./searchprocessor.js');
 
 class Colors {
     static BLACK       = { FG: '\u001b[38;5;0m',   BG: '\u001b[48;5;0m'   };
@@ -17,6 +18,7 @@ class Colors {
     static YELLOW      = { FG: '\u001b[38;5;226m', BG: '\u001b[48;5;226m' };
     static DARK_YELLOW = { FG: '\u001b[38;5;136m', BG: '\u001b[48;5;136m' };
     static GREEN       = { FG: '\u001b[38;5;40m',  BG: '\u001b[48;5;40m'  };
+    static MID_GREEN   = { FG: '\u001b[38;5;34m',  BG: '\u001b[48;5;34m'  };
     static DARK_GREEN  = { FG: '\u001b[38;5;28m',  BG: '\u001b[48;5;28m'  };
     static SKY_BLUE    = { FG: '\u001b[38;5;51m',  BG: '\u001b[48;5;51m'  };
     static BLUE        = { FG: '\u001b[38;5;27m',  BG: '\u001b[48;5;27m'  };
@@ -189,6 +191,14 @@ class Dashboard {
         ELEMENT_CONFIGURATIONS:         { x:  46, y: 41, length: 23 },  // Element Configurations
         DISPLAY_MODES:                  { x: 129, y: 34, length: 12 },  // Display Mode
         CONTROLS:                       { x: 131, y: 39, length:  8 },  // Controls
+    };
+
+    SEARCH_CONFIG = {
+        colors: {
+            RESULTS:         Colors.GREEN,
+            RESULTS_FOCUSED: Colors.MID_GREEN,
+            NO_RESULTS:      Colors.RED,
+        },
     };
 
     constructor() {
@@ -665,6 +675,14 @@ class Dashboard {
     }
 
     _populatePanel(config) {
+        if (config.mode === SelectModes.SEARCH) {
+            this._populateSearchPanel(config);
+        } else {
+            this._populateDataPanel(config);
+        }
+    }
+
+    _populateDataPanel(config) {
         // Top
         if (config.panel && config.panel.top) {
             if (config.panel.top.element) {
@@ -729,6 +747,70 @@ class Dashboard {
                 currentY++;
             }
         }
+    }
+
+    _populateSearchPanel(config) {
+        const hasResults = config.panel.bottom && config.panel.bottom.results && config.panel.bottom.results.length > 0;
+        // Top
+        if (config.panel && config.panel.top) {
+            if (config.panel.top.query) {
+                const color = hasResults ? this.SEARCH_CONFIG.colors.RESULTS : this.SEARCH_CONFIG.colors.NO_RESULTS;
+                this._setTextColor(this.PANEL_CONFIG.TOP_POS.x, this.PANEL_CONFIG.TOP_POS.y, this.PANEL_CONFIG.WIDTH, color, true);
+                this._setText(this.PANEL_CONFIG.TOP_POS.x, this.PANEL_CONFIG.TOP_POS.y, config.panel.top.query, this.PANEL_CONFIG.WIDTH, 'center');
+            }
+        }
+
+        // Bottom
+        if (hasResults) {
+            const highlightLength = config.panel.top.query ? config.panel.top.query.length : 0;
+            const nameOffset = 5;
+
+            if (config.panel.bottom.index !== undefined) {
+                this._setHighlightColor(this.PANEL_CONFIG.LIST_POS.x - 1, this.PANEL_CONFIG.LIST_POS.y + config.panel.bottom.index, this.PANEL_CONFIG.WIDTH + 2, Colors.WHITE);
+            }
+
+            for (let i = 0; i < config.panel.bottom.results.length; i++) {
+                const item = config.panel.bottom.results[i];
+                const isSelected = config.panel.bottom.index === i;
+                const selectedColor = isSelected ? this.SEARCH_CONFIG.colors.RESULTS_FOCUSED : this.SEARCH_CONFIG.colors.RESULTS;
+
+                if (item.type === SearchResultType.ELEMENT) {
+                    if (item.atomicNumber !== undefined) {
+                        this._setText(this.PANEL_CONFIG.LIST_POS.x, this.PANEL_CONFIG.LIST_POS.y + i, item.atomicNumber.text, 3, 'left');
+                        if (item.atomicNumber.index !== undefined) {
+                            this._setTextColor(this.PANEL_CONFIG.LIST_POS.x + item.atomicNumber.index, this.PANEL_CONFIG.LIST_POS.y + i, highlightLength, selectedColor, false);
+                        }
+                    } else if (item.atomicSymbol !== undefined) {
+                        this._setText(this.PANEL_CONFIG.LIST_POS.x, this.PANEL_CONFIG.LIST_POS.y + i, item.atomicSymbol.text, 2, 'left');
+                        if (item.atomicSymbol.index !== undefined) {
+                            this._setTextColor(this.PANEL_CONFIG.LIST_POS.x + item.atomicSymbol.index, this.PANEL_CONFIG.LIST_POS.y + i, highlightLength, selectedColor, false);
+                        }
+                    }
+                    if (item.name) {
+                        this._setText(this.PANEL_CONFIG.LIST_POS.x + nameOffset, this.PANEL_CONFIG.LIST_POS.y + i, item.name.text, this.PANEL_CONFIG.WIDTH - nameOffset, 'left');
+                        if (item.name.index !== undefined) {
+                            this._setTextColor(this.PANEL_CONFIG.LIST_POS.x + item.name.index + nameOffset, this.PANEL_CONFIG.LIST_POS.y + i, highlightLength, selectedColor, false);
+                        }
+                    }
+                } else {
+                    if (item.name) {
+                        this._setText(this.PANEL_CONFIG.LIST_POS.x, this.PANEL_CONFIG.LIST_POS.y + i, item.name.text, this.PANEL_CONFIG.WIDTH, 'left');
+                        if (item.name.index !== undefined) {
+                            this._setTextColor(this.PANEL_CONFIG.LIST_POS.x + item.name.index, this.PANEL_CONFIG.LIST_POS.y + i, highlightLength, selectedColor, false);
+                        }
+                    }
+                }
+            }
+
+            this._setTextColor(this.PANEL_CONFIG.LIST_POS.x, this.PANEL_CONFIG.LIST_POS.y + this.PANEL_CONFIG.HEIGHT - 2, this.PANEL_CONFIG.WIDTH, Colors.GRAY, false);
+            this._setText(this.PANEL_CONFIG.TOP_POS.x, this.PANEL_CONFIG.LIST_POS.y + this.PANEL_CONFIG.HEIGHT - 2, 'Navigation:<UP|DOWN>  Select:<ENTER>', this.PANEL_CONFIG.WIDTH, 'center');
+        } else {
+            this._setTextColor(this.PANEL_CONFIG.LIST_POS.x, this.PANEL_CONFIG.LIST_POS.y, this.PANEL_CONFIG.WIDTH, Colors.GRAY, false);
+            this._setText(this.PANEL_CONFIG.TOP_POS.x, this.PANEL_CONFIG.LIST_POS.y, 'NO RESULTS', this.PANEL_CONFIG.WIDTH, 'center');
+        }
+
+        this._setTextColor(this.PANEL_CONFIG.LIST_POS.x, this.PANEL_CONFIG.LIST_POS.y + this.PANEL_CONFIG.HEIGHT - 1, this.PANEL_CONFIG.WIDTH, Colors.GRAY, false);
+        this._setText(this.PANEL_CONFIG.TOP_POS.x, this.PANEL_CONFIG.LIST_POS.y + this.PANEL_CONFIG.HEIGHT - 1, 'Exit Search:<LEFT>', this.PANEL_CONFIG.WIDTH, 'center');
     }
 
     _getPanelValue(value) {

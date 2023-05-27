@@ -96,6 +96,16 @@ class Utils {
         return bucket;
     }
 
+    static chainSort(o1, o2, sorts) {
+        for (let sort of sorts) {
+            const res = sort(o1, o2);
+            if (res !== undefined && res !== 0 && !isNaN(res)) {
+                return res;
+            }
+        }
+        return 0;
+    }
+
 }
 
 module.exports = {

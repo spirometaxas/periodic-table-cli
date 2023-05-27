@@ -10,6 +10,15 @@ const KeyMap = {
     LEFT: '\u001b[D',
     SLASH: '\u002F',
     BACKSLASH: '\u005C',
+    BACKSPACE: '\u0008',
+    DELETE: '\u007F',
+    ENTER: '\u000D',
+    LETTERS: [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    ],
+    NUMBERS: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ],
+    SPECIAL_CHARACTERS: [ '-', ' ' ],
 }
 
 const DEGUG_MODE = true;  // TODO: Make false
@@ -60,6 +69,12 @@ class App {
                     handled = this.stateController.processSlash();
                 } else if (key === KeyMap.BACKSLASH) {
                     handled = this.stateController.processBackslash();
+                } else if (key === KeyMap.ENTER) {
+                    handled = this.stateController.processEnter();
+                } else if (key === KeyMap.BACKSPACE || key === KeyMap.DELETE) {
+                    handled = this.stateController.processBackspace();
+                } else if (KeyMap.LETTERS.includes(key) || KeyMap.NUMBERS.includes(key) || KeyMap.SPECIAL_CHARACTERS.includes(key)) {
+                    handled = this.stateController.processSearchInput(key);
                 }
 
                 if (handled) {

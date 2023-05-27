@@ -1,10 +1,12 @@
 const { Utils } = require('./utils.js');
 const data = require('./data.js');
+const { SearchProcessor, SearchResultType } = require('./searchprocessor.js');
 
 class SelectModes {
     static ELEMENT = 'element';
     static FAMILY  = 'family';
     static SHELL   = 'shell';
+    static SEARCH  = 'search';
 }
 
 class DisplayModes {
@@ -80,6 +82,11 @@ class Layout {
         { key: 'oxidationStates',       name: 'Oxidation States'  },
     ];
 
+    static SearchConfig = {
+        MAX_SEARCH_LENGTH:  36,
+        MAX_SEARCH_RESULTS: 23,
+    };
+
 }
 
 class StateController {
@@ -116,6 +123,10 @@ class StateController {
         }
         this.elements = Utils.getElements(data.elements);
         this.currentDisplayMode = DisplayModes.STANDARD;
+
+        this.previousFocus = undefined;
+        this.searchProcessor = new SearchProcessor();
+        this.searchState = {};
 
         this.initMeterConfig();
     }
@@ -172,6 +183,11 @@ class StateController {
                 this.currentFocus.id = this.currentFocus.id - 1;
                 return true;
             }
+        } else if (this.currentFocus.type === SelectModes.SEARCH) {
+            this.currentFocus = this.previousFocus;
+            this.previousFocus = undefined;
+            this.searchState = {};
+            return true;
         }
         return false;
     }
@@ -222,7 +238,7 @@ class StateController {
                 this.currentFocus = { type: SelectModes.ELEMENT, id: 99 };
             }
             return true;
-        }  else if (this.currentFocus.type === SelectModes.SHELL) {
+        } else if (this.currentFocus.type === SelectModes.SHELL) {
             if (this.currentFocus.id === 0) {
                 this.currentFocus = { type: SelectModes.FAMILY, id: 8 };
             } else if (this.currentFocus.id === 1) {
@@ -233,6 +249,12 @@ class StateController {
                 this.currentFocus = { type: SelectModes.FAMILY, id: 7 };
             }
             return true;
+        } else if (this.currentFocus.type === SelectModes.SEARCH) {
+            if (this.searchState && this.searchState.results && this.searchState.results.length > 0 && 
+                this.searchState.index !== undefined && this.searchState.index > 0) {
+                this.searchState.index--;
+                return true;
+            }
         }
         return false;
     }
@@ -275,6 +297,12 @@ class StateController {
                 this.currentFocus = { type: SelectModes.SHELL, id: 1 };
             }
             return true;
+        } else if (this.currentFocus.type === SelectModes.SEARCH) {
+            if (this.searchState && this.searchState.results && this.searchState.results.length > 0 && 
+                this.searchState.index !== undefined && this.searchState.index + 1 < this.searchState.results.length) {
+                this.searchState.index++;
+                return true;
+            }
         }
         return false;
     }
@@ -296,6 +324,77 @@ class StateController {
         } else {
             this.currentDisplayMode = this.displayModeOrder[currentIndex - 1];
         }
+        return true;
+    }
+
+    processBackspace() {
+        if (this.currentFocus.type === SelectModes.SEARCH) {
+            if (this.searchState && this.searchState.query && this.searchState.query.length > 0) {
+                this.searchState.query = this.searchState.query.substring(0, this.searchState.query.length - 1);
+                if (this.searchState.query.length === 0) {
+                    this.currentFocus = this.previousFocus;
+                    this.previousFocus = undefined;
+                    this.searchState = {};
+                    return true;
+                }
+                this.searchState.results = this.searchProcessor.query(this.searchState.query, Layout.SearchConfig.MAX_SEARCH_RESULTS);
+                this.searchState.index = 0;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    processEnter() {
+        if (this.currentFocus.type === SelectModes.SEARCH) {
+            if (this.searchState && this.searchState.results && this.searchState.results.length > 0 && this.searchState.index < this.searchState.results.length) {
+                const selectedItem = this.searchState.results[this.searchState.index];
+                if (selectedItem.type === SearchResultType.ELEMENT) {
+                    this.currentFocus = { type: SelectModes.ELEMENT, id: selectedItem.id };
+                } else if (selectedItem.type === SearchResultType.FAMILY) {
+                    const familyIndex = this._findFamily(selectedItem.id);
+                    this.currentFocus = { type: SelectModes.FAMILY, id: familyIndex };
+                } else if (selectedItem.type === SearchResultType.SHELL) {
+                    const shellIndex = this._findShell(selectedItem.id);
+                    this.currentFocus = { type: SelectModes.SHELL, id: shellIndex };
+                } else {
+                    this.currentFocus = this.previousFocus;
+                }
+            } else {
+                this.currentFocus = this.previousFocus;
+            }
+            this.previousFocus = undefined;
+            this.searchState = {};
+            return true;
+        }
+        return false;
+    }
+
+    processSearchInput(key) {
+        if (this.currentFocus.type !== SelectModes.SEARCH) {
+            // Don't start query with space or dash
+            if (key === ' ' || key === '-') {
+                return false;
+            }
+            this.previousFocus = this.currentFocus;
+            this.currentFocus = { type: SelectModes.SEARCH };
+            this.searchState.query = '';
+        }
+
+        if (this.searchState.query && this.searchState.query.length >= Layout.SearchConfig.MAX_SEARCH_LENGTH) {
+            return false;
+        }
+
+        // Don't allow appending multiple spaces or dashes
+        if (this.searchState.query && this.searchState.query.length > 0 && 
+            ((this.searchState.query.charAt(this.searchState.query.length - 1) === ' ' && key === ' ') || 
+            (this.searchState.query.charAt(this.searchState.query.length - 1) === '-' && key === '-'))) {
+            return false;
+        }
+
+        this.searchState.query += key.toUpperCase();
+        this.searchState.results = this.searchProcessor.query(this.searchState.query, Layout.SearchConfig.MAX_SEARCH_RESULTS);
+        this.searchState.index = 0;
         return true;
     }
 
@@ -385,6 +484,14 @@ class StateController {
                 id: Layout.ShellsTable[this.currentFocus.id].key,
             };
             panel.bottom = { description: data.shells[Layout.ShellsTable[this.currentFocus.id].key].description };
+        } else if (this.currentFocus.type === SelectModes.SEARCH) {
+            panel.top = { 
+                query: this.searchState.query,
+            };
+            panel.bottom = {
+                results: this.searchState.results,
+                index: this.searchState.index,
+            };
         }
 
         return {
@@ -395,6 +502,7 @@ class StateController {
             period: period,
             displayMode: this.currentDisplayMode,
             panel: panel,
+            mode: this.currentFocus.type,
         };
     }
 
@@ -406,6 +514,25 @@ class StateController {
                 }
             }
         }
+        return undefined;
+    }
+
+    _findFamily(familyKey) {
+        for (var i = 0; i < Layout.FamiliesTable.length; i++) {
+            if (Layout.FamiliesTable[i].key === familyKey) {
+                return Layout.FamiliesTable[i].index;
+            }
+        }
+        return undefined;
+    }
+
+    _findShell(shellKey) {
+        for (var i = 0; i < Layout.ShellsTable.length; i++) {
+            if (Layout.ShellsTable[i].key === shellKey) {
+                return Layout.ShellsTable[i].index;
+            }
+        }
+        return undefined;
     }
 
 }

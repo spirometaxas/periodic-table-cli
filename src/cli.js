@@ -21,9 +21,15 @@ const printUsage = function() {
                 '\n' +
                 ' Interactive Controls:\n' + 
                 '   - Navigation: Use <UP>|<DOWN>|<LEFT>|<RIGHT> arrows\n' + 
+                '\n' +
                 '   - Display Mode: Use Slash </> to toggle the display mode forwards\n' +
                 '                   Use BackSlash <\\> to toggle the display mode in reverse\n' +
-                '   - Search:\n' +
+                '\n' +
+                '   - Search: Query with letters or numbers\n' +
+                '             Use <UP>|<DOWN> arrows to navigate results\n' +
+                '             Press <ENTER> to select\n' +
+                '             Press <LEFT> to exit search\n' +
+                '\n' +
                 '   - Quit: Press <ESC> or <CTRL+C>\n' +
                 '\n' +
                 ' Usage:\n' + 
