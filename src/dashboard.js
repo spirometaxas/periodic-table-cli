@@ -3,6 +3,7 @@ const { SelectModes, DisplayModes, Layout } = require('./statecontroller.js');
 const data = require('./data.js');
 const { Utils } = require('./utils.js');
 const { SearchResultType } = require('./searchprocessor.js');
+const { Renderer } = require('./renderer.js');
 
 class Colors {
     static BLACK       = { FG: '\u001b[38;5;0m',   BG: '\u001b[48;5;0m'   };
@@ -867,34 +868,7 @@ class Dashboard {
 
     _draw() {
         const fullBoard = this._getFullScreenBoard();
-        var response = '';
-        for (var r = 0; r < fullBoard.length; r++) {
-            for (var c = 0; c < fullBoard[r].length; c++) {
-                var block = '';
-                var hasFormat = false;
-                if (fullBoard[r][c].config.backgroundColor) {
-                    block += fullBoard[r][c].config.backgroundColor;
-                    hasFormat = true;
-                }
-                if (fullBoard[r][c].config.foregroundColor && fullBoard[r][c].character !== ' ') {
-                    block += fullBoard[r][c].config.foregroundColor;
-                    hasFormat = true;
-                }
-                if (fullBoard[r][c].config.bold && fullBoard[r][c].character !== ' ') {
-                    block += '\u001b[1m';
-                    hasFormat = true;
-                }
-                block += fullBoard[r][c].character;
-                if (hasFormat) {
-                    block += '\u001b[0m';  // End format
-                }
-                response += block;
-            }
-            if (r < fullBoard.length - 1) {
-                response += '\n';
-            }
-        }
-        return response;
+        return Renderer.generateOptimized(fullBoard);
     }
 
     render(config) {
