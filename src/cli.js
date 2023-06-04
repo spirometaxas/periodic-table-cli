@@ -1,7 +1,13 @@
 #!/usr/bin/env node
-const periodic_table = require('./index.js');
 const { App } = require('./app.js');
-const { Utils } = require('./utils.js');
+const { DataProcessor } = require('./dataprocessor.js');
+const { ChartProcessor } = require('./chartprocessor.js');
+
+const MODES = {
+    APP:   'APP',
+    DATA:  'DATA',
+    CHART: 'CHART',
+};
 
 const printUsage = function() {
     console.log('\n' + 
@@ -37,11 +43,18 @@ const printUsage = function() {
                 '   $ periodic-table-cli [options]\n' + 
                 '\n' +
                 ' Options:\n' + 
-                '   --chart, -c            Print the Periodic Table of Elements Chart only (non-interactive)\n' +
-                '   --small, -s            A smaller Periodic Table of Elements Chart (include --chart)\n' +
-                '   --atomic-number=<int>  Initialize the Periodic Table at the provided atomic number (1-118)\n' +
+                '   --mode=<mode>          Set the mode for the application.  Supports three values:\n' +
+                '                            - app:    Run in interactive mode (default)\n' +
+                '                            - data:   Display data for a specified element\n' +
+                '                            - chart:  Prints a non-interactive table only\n' +
+                '   --atomic-number=<int>  Initialize the Periodic Table at the specified atomic number (1-118)\n' +
+                '   --symbol=<symbol>      Initialize the Periodic Table at the specified element symbol\n' +
+                '   --name=<name>          Initialize the Periodic Table at the specified element name\n' +
+                '   --small, -s            Print a smaller Periodic Table of Elements (include --mode=chart)\n' +
+                '   --verbose, -v          Print a complete data chart with all elements (include --mode=data)\n' +
                 '\n' +
-                ' Last updated March 2023');
+                ' Full Docs: https://spirometaxas.com/projects/periodic-table-cli\n\n' +
+                ' Last updated March 2023\n');
 }
 
 const getFlags = function(params) {
@@ -65,15 +78,6 @@ const isSmall = function(flags) {
     return false;
 }
 
-const isChart = function(flags) {
-    for (let i = 0; i < flags.length; i++) {
-        if (flags[i] && (flags[i].toLowerCase() === '-c' || flags[i].toLowerCase() === '--chart')) {
-            return true;
-        }
-    }
-    return false;
-}
-
 const isHelp = function(flags) {
     for (let i = 0; i < flags.length; i++) {
         if (flags[i] && (flags[i].toLowerCase() === '--help' || flags[i].toLowerCase() === '-h')) {
@@ -83,32 +87,91 @@ const isHelp = function(flags) {
     return false;
 }
 
-const getAtomicNumber = function(flags) {
+const isVerbose = function(flags) {
     for (let i = 0; i < flags.length; i++) {
-        if (flags[i] && flags[i].toLowerCase().startsWith('--atomic-number=')) {
-            const atomicNumberString = flags[i].substring(16);
-            if (atomicNumberString !== undefined && !isNaN(atomicNumberString)) {
-                const atomicNumber = parseInt(atomicNumberString);
-                if (Utils.isValidAtomicNumber(atomicNumber)) {
-                    return atomicNumber;
-                }
+        if (flags[i] && (flags[i].toLowerCase() === '--verbose' || flags[i].toLowerCase() === '-v')) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const getMode = function(flags) {
+    const prefix = '--mode=';
+    for (let i = 0; i < flags.length; i++) {
+        if (flags[i] && flags[i].toLowerCase().startsWith(prefix)) {
+            const modeString = flags[i].substring(prefix.length);
+            if (modeString !== undefined && MODES[modeString.toUpperCase()] !== undefined) {
+                return MODES[modeString.toUpperCase()];
             }
         }
     }
-    return 1;
+    return MODES.APP;  // Default to APP
 }
 
+const getAtomicNumber = function(flags) {
+    const prefix = '--atomic-number=';
+    for (let i = 0; i < flags.length; i++) {
+        if (flags[i] && flags[i].toLowerCase().startsWith(prefix)) {
+            const atomicNumberString = flags[i].substring(prefix.length);
+            if (atomicNumberString !== undefined && !isNaN(atomicNumberString)) {
+                return parseInt(atomicNumberString);
+            }
+        }
+    }
+    return undefined;
+}
+
+const getName = function(flags) {
+    const prefix = '--name=';
+    for (let i = 0; i < flags.length; i++) {
+        if (flags[i] && flags[i].toLowerCase().startsWith(prefix)) {
+            const nameString = flags[i].substring(prefix.length);
+            if (nameString !== undefined) {
+                return nameString;
+            }
+        }
+    }
+    return undefined;
+}
+
+const getSymbol = function(flags) {
+    const prefix = '--symbol=';
+    for (let i = 0; i < flags.length; i++) {
+        if (flags[i] && flags[i].toLowerCase().startsWith(prefix)) {
+            const symbolString = flags[i].substring(prefix.length);
+            if (symbolString !== undefined) {
+                return symbolString;
+            }
+        }
+    }
+    return undefined;
+}
+
+var mode = MODES.APP;
+var atomicNumber = undefined;
+var name = undefined;
+var symbol = undefined;
 var small = false;
-var atomicNumber = 1;
+var verbose = false;
+
 if (process.argv.length > 2) {
     const params = process.argv.slice(2);
-    small = isSmall(params);
+    mode = getMode(params);
     atomicNumber = getAtomicNumber(params);
+    name = getName(params);
+    symbol = getSymbol(params);
+    small = isSmall(params);
+    verbose = isVerbose(params);
+
     if (isHelp(params)) {
         printUsage();
         process.exit();
-    } else if (isChart(params)) {
-        console.log(small ? periodic_table.table_small : periodic_table.table);
+    } else if (mode === MODES.DATA) {
+        console.log(DataProcessor.formatData({ atomicNumber: atomicNumber, symbol: symbol, name: name, verbose: verbose }));
+        process.exit();
+    } else if (mode === MODES.CHART) {
+        console.log(ChartProcessor.formatChart({ atomicNumber: atomicNumber, symbol: symbol, name: name, small: small }));
         process.exit();
     }
 }
@@ -118,4 +181,4 @@ if (!process.stdout.isTTY) {
     process.exit();
 }
 
-new App().start({ atomicNumber: atomicNumber });
+new App().start({ atomicNumber: atomicNumber, name: name, symbol: symbol });

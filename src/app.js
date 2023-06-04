@@ -21,7 +21,7 @@ const KeyMap = {
     SPECIAL_CHARACTERS: [ '-', ' ' ],
 }
 
-const DEGUG_MODE = true;  // TODO: Make false
+const DEGUG_MODE = false;
 
 class App {
 

@@ -38,6 +38,66 @@ class Utils {
         return atomicNumber && atomicNumber >= 1 && atomicNumber <= 118;
     }
 
+    static getElementByAtomicNumber(atomicNumber, elements) {
+        if (atomicNumber === undefined) {
+            return undefined;
+        }
+        for (const element of elements) {
+            if (element.atomicNumber === atomicNumber) {
+                return element;
+            }
+        }
+        return undefined;
+    }
+
+    static isValidElementName(name, elements) {
+        if (name === undefined) {
+            return false;
+        }
+        for (const element of elements) {
+            if (element.name.toLowerCase() === name.toLowerCase()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static getElementByName(name, elements) {
+        if (name === undefined) {
+            return undefined;
+        }
+        for (const element of elements) {
+            if (element.name.toLowerCase() === name.toLowerCase()) {
+                return element;
+            }
+        }
+        return undefined;
+    }
+
+    static isValidElementSymbol(symbol, elements) {
+        if (symbol === undefined) {
+            return false;
+        }
+        for (const element of elements) {
+            if (element.symbol.toLowerCase() === symbol.toLowerCase()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static getElementBySymbol(symbol, elements) {
+        if (symbol === undefined) {
+            return undefined;
+        }
+        for (const element of elements) {
+            if (element.symbol.toLowerCase() === symbol.toLowerCase()) {
+                return element;
+            }
+        }
+        return undefined;
+    }
+
     static isBottomSection(atomicNumber) {
         // Lanthanide or Actinide
         return (atomicNumber >= 57 && atomicNumber <= 71) || (atomicNumber >= 89 && atomicNumber <= 103);

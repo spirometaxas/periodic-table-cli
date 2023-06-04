@@ -118,6 +118,10 @@ class StateController {
     constructor(config) {
         if (config && Utils.isValidAtomicNumber(config.atomicNumber)) {
             this.currentFocus = { type: SelectModes.ELEMENT, id: config.atomicNumber };
+        } else if (config && Utils.isValidElementSymbol(config.symbol, data.elements)) {
+            this.currentFocus = { type: SelectModes.ELEMENT, id: Utils.getElementBySymbol(config.symbol, data.elements).atomicNumber };
+        } else if (config && Utils.isValidElementName(config.name, data.elements)) {
+            this.currentFocus = { type: SelectModes.ELEMENT, id: Utils.getElementByName(config.name, data.elements).atomicNumber };
         } else {
             this.currentFocus = { type: SelectModes.ELEMENT, id: 1 };
         }
