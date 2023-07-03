@@ -28,8 +28,8 @@ const printUsage = function() {
                 ' Interactive Controls:\n' + 
                 '   - Navigation: Use <UP>|<DOWN>|<LEFT>|<RIGHT> arrows\n' + 
                 '\n' +
-                '   - Display Mode: Use Slash </> to toggle the display mode forwards\n' +
-                '                   Use BackSlash <\\> to toggle the display mode in reverse\n' +
+                '   - Display Mode: Use SLASH </> to toggle the display mode forwards\n' +
+                '                   Use BACKSLASH <\\> to toggle the display mode in reverse\n' +
                 '\n' +
                 '   - Search: Query with letters or numbers\n' +
                 '             Use <UP>|<DOWN> arrows to navigate results\n' +
@@ -54,7 +54,7 @@ const printUsage = function() {
                 '   --verbose, -v          Print a complete data chart with all elements (include --mode=data)\n' +
                 '\n' +
                 ' Full Docs: https://spirometaxas.com/projects/periodic-table-cli\n\n' +
-                ' Last updated March 2023\n');
+                ' Last updated July 2023\n');
 }
 
 const getFlags = function(params) {
