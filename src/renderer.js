@@ -51,6 +51,11 @@ class Renderer {
                         currentBGColor = undefined;
                         currentBold = false;
                     }
+                } else if (fullBoard[r][c].character === ' ' && !fullBoard[r][c].config.bold && currentBold) {
+                    block += '\u001b[0m';  // End format
+                    currentFGColor = undefined;
+                    currentBGColor = undefined;
+                    currentBold = false;
                 }
 
                 if (fullBoard[r][c].config.backgroundColor && fullBoard[r][c].config.backgroundColor !== currentBGColor) {
@@ -75,7 +80,7 @@ class Renderer {
             }
         }
         return response;
-    }  // 22235  22380
+    }  // 22235  22380  22434
 
 }
 
