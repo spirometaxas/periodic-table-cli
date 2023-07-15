@@ -38,6 +38,8 @@ The config params are optional (see below).
 
 Add the `--help` flag for more info.
 
+Note: Be sure to run in terminals that support 256 colors.
+
 ## Features
 ### Browse
 Use arrow keys to navigate and browse across all 118 elements.  The selected element appears in gold on the Periodic Table on the left, and 22 data points for that element will display on the right.  Each element's family and electron configuration will appear in gold below the Periodic Table. 
