@@ -60,7 +60,7 @@ Use letters or numbers to query for an element, family, or electron configuratio
 ![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/search_01.png)
 
 ### Display Mode
-Use the SLASH </> key to toggle different display modes.  Use BACKSLASH <\\> to toggle in reverse.  The following 20 display modes are supported:
+Use the SLASH (`/`) key to toggle different display modes.  Use BACKSLASH (` \ `) to toggle in reverse.  The following 20 display modes are supported:
 
 #### Element Families
 
