@@ -28,7 +28,7 @@ $ npm install --global periodic-table-cli
 $ periodic-table-cli
 $ periodic-table-cli [options]
 ```
-The config params are optional (see below).  
+The config params are optional ([see below](https://github.com/spirometaxas/periodic-table-cli#options)).  
 
 ### Interactive Controls
 - **Navigation**: Use `UP` / `DOWN` / `LEFT` / `RIGHT` arrows.
