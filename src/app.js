@@ -33,6 +33,7 @@ class App {
         process.stdin.resume();
         process.stdin.setEncoding('utf8');
         process.stdout.write('\u001b[?1049h');  // Enter alternate screen mode
+        process.stdout.write('\u001b[?1000h');  // Mouse events on
         process.stdout.write('\u001B[?25l');    // Hise cursor
         this._initHandlers();
         this._draw(true);
@@ -106,6 +107,7 @@ class App {
 
     exit(message) {
         process.stdout.write('\u001b[?1049l');  // Exit altername screen mode
+        process.stdout.write('\u001b[?1000l');  // Mouse events off
         process.stdout.write('\u001B[?25h');    // Show cursor
         if (message) {
             console.log(message);
