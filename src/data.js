@@ -3055,7 +3055,7 @@ module.exports = {
         },
         "Transition metal": {
             "name": "Transition Metals",
-            "description": "The 38 elements in Groups 3 through 12 of the Periodic Table are called Transition Metals. As with all metals, the Transition elements are both ductile and malleable, and good conductuctors of heat and electricity. Their valence electrons are present in more than one shell. This is why they often exhibit several common oxidation states. They also have high melting points, boiling points, and densities.",
+            "description": "The 38 elements in Groups 3 through 12 of the Periodic Table are called Transition Metals. As with all metals, the Transition elements are both ductile and malleable, and good conductors of heat and electricity. Their valence electrons are present in more than one shell. This is why they often exhibit several common oxidation states. They also have high melting points, boiling points, and densities.",
         },
         "Post-transition metal": {
             "name": "Post-Transition Metals",
