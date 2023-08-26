@@ -228,9 +228,9 @@ Minimum terminal width: 76 characters
 #### Specific Elements
 Specify an element to view that element on the Periodic Table of Element.  Elements can be specified using the `--atomic-number=<number>`, `--symbol=<symbol>`, or `--name=<name>` params:
 ```
-$ periodic-table-cli --mode=data --atomic-number=<number>
-$ periodic-table-cli --mode=data --symbol=<symbol>
-$ periodic-table-cli --mode=data --name=<name>
+$ periodic-table-cli --mode=chart --atomic-number=<number>
+$ periodic-table-cli --mode=chart --symbol=<symbol>
+$ periodic-table-cli --mode=chart --name=<name>
 ```
 ![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/chart_element.png)
 
