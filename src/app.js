@@ -12,7 +12,8 @@ const KeyMap = {
     BACKSLASH: '\u005C',
     BACKSPACE: '\u0008',
     DELETE: '\u007F',
-    ENTER: '\u000D',
+    ENTER_LF: '\u000A',
+    ENTER_CR: '\u000D',
     LETTERS: [
         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -69,7 +70,7 @@ class App {
                     handled = this.stateController.processSlash();
                 } else if (key === KeyMap.BACKSLASH) {
                     handled = this.stateController.processBackslash();
-                } else if (key === KeyMap.ENTER) {
+                } else if (key === KeyMap.ENTER_LF || key === KeyMap.ENTER_CR) {
                     handled = this.stateController.processEnter();
                 } else if (key === KeyMap.BACKSPACE || key === KeyMap.DELETE) {
                     handled = this.stateController.processBackspace();
