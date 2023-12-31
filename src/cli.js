@@ -2,6 +2,7 @@
 const { App } = require('./app.js');
 const { DataProcessor } = require('./dataprocessor.js');
 const { ChartProcessor } = require('./chartprocessor.js');
+const { version } = require('../package.json');
 
 const MODES = {
     APP:   'APP',
@@ -54,7 +55,8 @@ const printUsage = function() {
                 '   --verbose, -v          Print a complete data chart with all elements (include --mode=data)\n' +
                 '\n' +
                 ' Full Docs: https://spirometaxas.com/projects/periodic-table-cli\n\n' +
-                ' Last updated July 2023\n');
+                ' Last updated January 2024\n' +
+                ' ' + getVersion() + '\n');
 }
 
 const getFlags = function(params) {
@@ -87,9 +89,24 @@ const isHelp = function(flags) {
     return false;
 }
 
-const isVerbose = function(flags) {
+const isVerbose = function(flags, mode) {
+    if (mode !== MODES.DATA) {
+        return false;
+    }
     for (let i = 0; i < flags.length; i++) {
         if (flags[i] && (flags[i].toLowerCase() === '--verbose' || flags[i].toLowerCase() === '-v')) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const isVersion = function(flags, mode) {
+    if (mode !== MODES.APP) {
+        return false;
+    }
+    for (let i = 0; i < flags.length; i++) {
+        if (flags[i] && (flags[i].toLowerCase() === '--version' || flags[i].toLowerCase() === '-v')) {
             return true;
         }
     }
@@ -148,6 +165,10 @@ const getSymbol = function(flags) {
     return undefined;
 }
 
+const getVersion = function() {
+    return 'v' + version + ' (NodeJS)';
+}
+
 var mode = MODES.APP;
 var atomicNumber = undefined;
 var name = undefined;
@@ -162,10 +183,13 @@ if (process.argv.length > 2) {
     name = getName(params);
     symbol = getSymbol(params);
     small = isSmall(params);
-    verbose = isVerbose(params);
+    verbose = isVerbose(params, mode);
 
     if (isHelp(params)) {
         printUsage();
+        process.exit();
+    } else if (isVersion(params, mode)) {
+        console.log('\n ' + getVersion() + '\n');
         process.exit();
     } else if (mode === MODES.DATA) {
         console.log(DataProcessor.formatData({ atomicNumber: atomicNumber, symbol: symbol, name: name, verbose: verbose }));
