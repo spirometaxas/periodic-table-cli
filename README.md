@@ -8,10 +8,10 @@ Why the console?  Because it's the *cool* way.
 
 ![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/animated.gif)
 
-[![npm version](https://img.shields.io/npm/v/periodic-table-cli)](https://www.npmjs.com/package/periodic-table-cli)
-[![stars](https://img.shields.io/github/stars/spirometaxas/periodic-table-cli)](https://github.com/spirometaxas/periodic-table-cli)
-[![downloads](https://img.shields.io/npm/dy/periodic-table-cli)](https://www.npmjs.com/package/periodic-table-cli)
-[![license](https://img.shields.io/npm/l/periodic-table-cli)](https://github.com/spirometaxas/periodic-table-cli/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/periodic-table-cli.svg)](https://www.npmjs.com/package/periodic-table-cli)
+[![stars](https://img.shields.io/github/stars/spirometaxas/periodic-table-cli.svg)](https://github.com/spirometaxas/periodic-table-cli)
+[![downloads](https://img.shields.io/npm/dy/periodic-table-cli.svg)](https://www.npmjs.com/package/periodic-table-cli)
+[![license](https://img.shields.io/npm/l/periodic-table-cli.svg)](https://github.com/spirometaxas/periodic-table-cli/blob/main/LICENSE)
 
 Also available for [Python](https://pypi.org/project/periodic-table-cli/).  View [Homepage](https://spirometaxas.com/projects/periodic-table-cli).
 
