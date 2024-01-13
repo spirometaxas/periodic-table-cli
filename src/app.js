@@ -20,7 +20,13 @@ const KeyMap = {
     ],
     NUMBERS: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ],
     SPECIAL_CHARACTERS: [ '-', ' ' ],
+    COMMA: ',',
+    PERIOD: '.',
+    LEFT_CARROT: '<',
+    RIGHT_CARROT: '>',
 }
+
+const MINIMUM_SUPPORTED_DIMENSIONS = { rows: 46, columns: 156 };
 
 const DEGUG_MODE = false;
 
@@ -76,6 +82,14 @@ class App {
                     handled = this.stateController.processBackspace();
                 } else if (KeyMap.LETTERS.includes(key) || KeyMap.NUMBERS.includes(key) || KeyMap.SPECIAL_CHARACTERS.includes(key)) {
                     handled = this.stateController.processSearchInput(key);
+                } else if (key === KeyMap.COMMA) {
+                    handled = this.dashboard.scrollUp();
+                } else if (key === KeyMap.PERIOD) {
+                    handled = this.dashboard.scrollDown();
+                } else if (key === KeyMap.LEFT_CARROT) {
+                    handled = this.dashboard.scrollLeft();
+                } else if (key === KeyMap.RIGHT_CARROT) {
+                    handled = this.dashboard.scrollRight();
                 }
 
                 if (handled) {
@@ -93,6 +107,7 @@ class App {
         // On terminal resize
         process.on("SIGWINCH", () => {
             try {
+                this.dashboard.updateScrollingOnResize()
                 this._draw(true);
                 process.stdout.write('\u001B[?25l');  // Hise cursor
             } catch(e) {
@@ -110,6 +125,14 @@ class App {
         process.stdout.write('\u001B[?25h');    // Show cursor
         if (message) {
             console.log(message);
+        } else if (process.stdout.rows < MINIMUM_SUPPORTED_DIMENSIONS.rows || process.stdout.columns < MINIMUM_SUPPORTED_DIMENSIONS.columns) {
+            console.log('\n' +
+                ' Warning: Current screen dimensions are smaller than minimum supported dimensions, and some screen components may have been cut off.\n' +
+                ' To fix this, either make the screen bigger or use scrolling to pan across the screen:\n' +
+                '   - Use COMMA (,) to scroll up\n' +
+                '   - Use PERIOD (.) to scroll down\n' +
+                '   - Use LEFT CARROT (<) to scroll left\n' +
+                '   - Use RIGHT CARROT (>) to scroll right\n');
         }
         process.exit();
     }
