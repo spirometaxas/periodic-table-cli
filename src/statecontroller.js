@@ -15,10 +15,10 @@ class DisplayModes {
     static SHELLS            = { name: 'shells'                                                     };
     static STATES            = { name: 'states',            key: 'standardState'                    };
     static ATOMIC_MASS       = { name: 'atomicMass',        key: 'atomicMass',        isMeter: true };
-    static PROTONS           = { name: 'protons',           key: 'numberofProtons',   isMeter: true };
+    static PROTONS           = { name: 'protons',           key: 'numberOfProtons',   isMeter: true };
     static NEUTRONS          = { name: 'neutrons',          key: 'numberOfNeutrons',  isMeter: true };
-    static ELECTRONS         = { name: 'electrons',         key: 'numberofElectrons', isMeter: true };
-    static VALENCE_ELECTRONS = { name: 'numberofValence',   key: 'numberofValence'                  };
+    static ELECTRONS         = { name: 'electrons',         key: 'numberOfElectrons', isMeter: true };
+    static VALENCE_ELECTRONS = { name: 'numberOfValence',   key: 'numberOfValence'                  };
     static VALENCY           = { name: 'valency',           key: 'valency'                          };
     static ATOMIC_RADIUS     = { name: 'atomicRadius',      key: 'atomicRadius',      isMeter: true };
     static DENSITY           = { name: 'density',           key: 'density',           isMeter: true };
@@ -62,10 +62,10 @@ class Layout {
         { key: 'symbol',                name: 'Symbol'            },
         { key: 'standardState',         name: 'State'             },
         { key: 'atomicMass',            name: 'Atomic Mass'       },
-        { key: 'numberofProtons',       name: 'Protons'           },
+        { key: 'numberOfProtons',       name: 'Protons'           },
         { key: 'numberOfNeutrons',      name: 'Neutrons'          },
-        { key: 'numberofElectrons',     name: 'Electrons'         },
-        { key: 'numberofValence',       name: 'Valence Electrons' },
+        { key: 'numberOfElectrons',     name: 'Electrons'         },
+        { key: 'numberOfValence',       name: 'Valence Electrons' },
         { key: 'valency',               name: 'Valency'           },
         { key: 'atomicRadius',          name: 'Atomic Radius'     },
         { key: 'density',               name: 'Density'           },
@@ -138,10 +138,10 @@ class StateController {
     initMeterConfig() {
         const fieldFormatters = {
             'atomicMass':        (v) => Utils.parseNumber(v, ' u'.length),
-            'numberofProtons':   (v) => Utils.parseNumber(v),
+            'numberOfProtons':   (v) => Utils.parseNumber(v),
             'numberOfNeutrons':  (v) => Utils.parseNumber(v),
-            'numberofElectrons': (v) => Utils.parseNumber(v),
-            'numberofValence':   (v) => Utils.parseNumber(v),
+            'numberOfElectrons': (v) => Utils.parseNumber(v),
+            'numberOfValence':   (v) => Utils.parseNumber(v),
             'valency':           (v) => Utils.parseNumber(v),
             'atomicRadius':      (v) => Utils.parseNumber(v, ' pm'.length),
             'density':           (v) => Utils.parseNumber(v, ' g/cm^3'.length),
@@ -433,7 +433,7 @@ class StateController {
                     } else if (this.currentDisplayMode === DisplayModes.STATES) {
                         config.display = { state: this.elements[Layout.PeriodicTable[r][c]].standardState };
                     } else if (this.currentDisplayMode === DisplayModes.VALENCE_ELECTRONS) {
-                        config.display = { valenceElectrons: this.elements[Layout.PeriodicTable[r][c]].numberofValence };
+                        config.display = { valenceElectrons: this.elements[Layout.PeriodicTable[r][c]].numberOfValence };
                     } else if (this.currentDisplayMode === DisplayModes.VALENCY) {
                         config.display = { valency: this.elements[Layout.PeriodicTable[r][c]].valency };
                     } else if (this.currentDisplayMode === DisplayModes.RADIOACTIVE) {

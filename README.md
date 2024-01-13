@@ -8,12 +8,12 @@ Why the console?  Because it's the *cool* way.
 
 ![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/animated.gif)
 
-[![npm version](https://img.shields.io/npm/v/periodic-table-cli)](https://www.npmjs.com/package/periodic-table-cli)
-[![bundle size](https://img.shields.io/bundlephobia/min/periodic-table-cli)](https://bundlephobia.com/package/periodic-table-cli)
-[![downloads](https://img.shields.io/npm/dy/periodic-table-cli)](https://www.npmjs.com/package/periodic-table-cli)
-[![license](https://img.shields.io/npm/l/periodic-table-cli)](https://github.com/spirometaxas/periodic-table-cli/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/periodic-table-cli.svg)](https://www.npmjs.com/package/periodic-table-cli)
+[![stars](https://img.shields.io/github/stars/spirometaxas/periodic-table-cli.svg)](https://github.com/spirometaxas/periodic-table-cli)
+[![downloads](https://img.shields.io/npm/dy/periodic-table-cli.svg)](https://www.npmjs.com/package/periodic-table-cli)
+[![license](https://img.shields.io/npm/l/periodic-table-cli.svg)](https://github.com/spirometaxas/periodic-table-cli/blob/main/LICENSE)
 
-[View Homepage](https://spirometaxas.com/projects/periodic-table-cli)
+Also available for [Python](https://pypi.org/project/periodic-table-cli/).  View [Homepage](https://spirometaxas.com/projects/periodic-table-cli).
 
 ## Usage
 ### Run via `npx`:
@@ -30,6 +30,8 @@ $ periodic-table-cli [options]
 ```
 The config params are optional ([see below](https://github.com/spirometaxas/periodic-table-cli#options)).  
 
+Note: Supports NodeJS 12+.  No dependencies!
+
 ### Interactive Controls
 - **Navigation**: Use `UP` / `DOWN` / `LEFT` / `RIGHT` arrows.
 - **Display Mode**: Use `SLASH` (`/`) to toggle the display mode forwards.  Use `BACKSLASH` (` \ `) to toggle the display mode in reverse.
@@ -38,7 +40,7 @@ The config params are optional ([see below](https://github.com/spirometaxas/peri
 
 Add the `--help` flag for more info.
 
-Note: Be sure to run in terminals that support 256 colors.
+Note: Be sure to run in terminals that support 256 colors.  Minimum required terminal screen dimensions: 156 columns x 46 rows.
 
 ## Features
 ### Browse
@@ -252,7 +254,7 @@ $ periodic-table-cli --mode=app --name=<name>
 ## Data Sources
 Data used in the app is stored in an easy to edit [data file](https://github.com/spirometaxas/periodic-table-cli/blob/main/src/data.js).  The data is mostly imported from [PubChem](https://pubchem.ncbi.nlm.nih.gov/periodic-table/). 
 
-Last Updated July 2023
+Last Updated January 2024
 
 ## License
 - [MIT](https://github.com/spirometaxas/periodic-table-cli/blob/main/LICENSE) &copy; [Spiro Metaxas](https://spirometaxas.com)
