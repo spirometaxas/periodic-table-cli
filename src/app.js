@@ -127,7 +127,7 @@ class App {
             console.log(message);
         } else if (process.stdout.rows < MINIMUM_SUPPORTED_DIMENSIONS.rows || process.stdout.columns < MINIMUM_SUPPORTED_DIMENSIONS.columns) {
             console.log('\n' +
-                ' Warning: Current screen dimensions are smaller than minimum supported dimensions, and some screen components may have been cut off.\n' +
+                ' Tip: Current screen dimensions are smaller than minimum supported dimensions, and some screen components may have been cut off.\n' +
                 ' To fix this, either make the screen bigger or use scrolling to pan across the screen:\n' +
                 '   - Use COMMA (,) to scroll up\n' +
                 '   - Use PERIOD (.) to scroll down\n' +
