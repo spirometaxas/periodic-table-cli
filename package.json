@@ -1,6 +1,6 @@
 {
   "name": "periodic-table-cli",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "An interactive Periodic Table of Elements app for the console!",
   "main": "./src/index.js",
   "bin": {
