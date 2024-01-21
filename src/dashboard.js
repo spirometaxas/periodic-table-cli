@@ -165,6 +165,7 @@ class Dashboard {
 
     constructor() {
         this.board = this._parseBoard();
+        this.scrolling = { x: 0, y: 0 };
         this._initDataOnBoard();
         this._saveBoard();
 
@@ -820,11 +821,58 @@ class Dashboard {
                     rOffset = parseInt((fullRows - this.board.length) * this.VERTICAL_RATIO);
                 }
 
-                fullBoard[rOffset + r][cOffset + c] = this.board[r][c];
+                fullBoard[rOffset + r][cOffset + c] = this.board[r + this.scrolling.y][c + this.scrolling.x];
             }
         }
 
         return fullBoard;
+    }
+
+    scrollUp() {
+        const fullRows = process.stdout.rows;
+        if (fullRows < this.board.length && this.scrolling.y > 0) {
+            this.scrolling.y -= 1;
+            return true;
+        }
+        return false;
+    }
+
+    scrollDown() {
+        const fullRows = process.stdout.rows;
+        if (fullRows < this.board.length && this.scrolling.y + fullRows < this.board.length) {
+            this.scrolling.y += 1;
+            return true;
+        }
+        return false;
+    }
+
+    scrollLeft() {
+        const fullColumns = process.stdout.columns;
+        if (fullColumns < this.board[0].length && this.scrolling.x > 0) {
+            this.scrolling.x -= 1;
+            return true;
+        }
+        return false;
+    }
+
+    scrollRight() {
+        const fullColumns = process.stdout.columns;
+        if (fullColumns < this.board[0].length && this.scrolling.x + fullColumns < this.board[0].length) {
+            this.scrolling.x += 1;
+            return true;
+        }
+        return false;
+    }
+
+    updateScrollingOnResize() {
+        const fullRows = process.stdout.rows;
+        const fullColumns = process.stdout.columns;
+        if (this.scrolling.y + fullRows > this.board.length) {
+            this.scrolling.y = Math.max(this.board.length - fullRows, 0);
+        }
+        if (this.scrolling.x + fullColumns > this.board[0].length) {
+            this.scrolling.x = Math.max(this.board[0].length - fullColumns, 0);
+        }
     }
 
     _draw() {
