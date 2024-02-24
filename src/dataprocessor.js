@@ -22,7 +22,7 @@ class DataProcessor {
         { key: 'numberOfValence',       title: 'Valence Electrons',      titleParts: [ 'Valence', 'Elect-', 'rons' ]      },
         { key: 'valency',               title: 'Valency',                titleParts: [ '', '', 'Valency' ]                },
         { key: 'atomicRadius',          title: 'Atomic Radius',          titleParts: [ 'Atomic', 'Radius', '(pm)' ]       },
-        { key: 'density',               title: 'Density',                titleParts: [ '', 'Density', '(g/cm^3)' ]        },
+        { key: 'density',               title: 'Density',                titleParts: [ '', 'Density', '(g/cm³)' ]         },
         { key: 'electronegativity',     title: 'Electronegativity',      titleParts: [ '', 'Electro-', 'negativity' ]     },
         { key: 'ionizationEnergy',      title: 'Ioization Energy',       titleParts: [ 'Ionization', 'Energy', '(eV)' ]   },
         { key: 'electronAffinity',      title: 'Electron Affinity',      titleParts: [ 'Electron', 'Affinity', '(eV)' ]   },
@@ -192,7 +192,7 @@ class DataProcessor {
             } else if (key === 'atomicRadius') {
                 return value.replace(' pm', '');
             } else if (key === 'density') {
-                return value.replace(' g/cm^3', '');
+                return value.replace(' g/cm³', '');
             } else if (key === 'ionizationEnergy' || key === 'electronAffinity') {
                 return value.replace(' eV', '');
             } else if (key === 'meltingPoint' || key === 'boilingPoint') {
