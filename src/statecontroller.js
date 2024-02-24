@@ -144,7 +144,7 @@ class StateController {
             'numberOfValence':   (v) => Utils.parseNumber(v),
             'valency':           (v) => Utils.parseNumber(v),
             'atomicRadius':      (v) => Utils.parseNumber(v, ' pm'.length),
-            'density':           (v) => Utils.parseNumber(v, ' g/cm^3'.length),
+            'density':           (v) => Utils.parseNumber(v, ' g/cm³'.length),
             'electronegativity': (v) => Utils.parseNumber(v),
             'ionizationEnergy':  (v) => Utils.parseNumber(v, ' eV'.length),
             'electronAffinity':  (v) => Utils.parseNumber(v, ' eV'.length),
