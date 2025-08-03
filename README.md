@@ -48,20 +48,20 @@ Note:
 ### Browse
 Use arrow keys to navigate and browse across all 118 elements.  The selected element appears in gold on the Periodic Table on the left, and 22 data points for that element will display on the right.  Each element's family and electron configuration will appear in gold below the Periodic Table. 
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/browse_01.png) 
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/browse_01.png) 
 
 Move the cursor directly below the Periodic Table to browse all 10 element families.  The elements in that family will be focused on the Periodic Table, and a description of that family will appear on the right.  
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/browse_02.png) 
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/browse_02.png) 
 
 Move the cursor below the element families to browse all 4 electron configurations.  The elements with that electron configuration will be focused on the Periodic Table, and a description of that electron shell will appear on the right.  
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/browse_03.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/browse_03.png)
 
 ### Search
 Use letters or numbers to query for an element, family, or electron configuration.  Queries are matched on element names, symbols, and atomic numbers, along with family names and electron configuration names.  Just start typing to enter search mode.  Press the Enter to select a search item, or the Left arrow to exit search mode.
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/search_01.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/search_01.png)
 
 ### Display Mode
 Use the SLASH (`/`) key to toggle different display modes.  Use BACKSLASH (` \ `) to toggle in reverse.  The following 20 display modes are supported:
@@ -70,121 +70,121 @@ Use the SLASH (`/`) key to toggle different display modes.  Use BACKSLASH (` \ `
 
 Display 10 color-coded element families:
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_01.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_01.png)
 
 #### Electron Configurations
 
 Display 4 color-coded electron shells:
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_02.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_02.png)
 
 #### Standard State
 
 Display whether an element is a solid (white), liquid (red), or gas (blue).  Expected states appear as a darker color (gray is expected solid, dark blue is expected gas):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_03.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_03.png)
 
 #### Atomic Mass
 
 Display a heat-map of atomic mass (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_04.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_04.png)
 
 #### Protons
 
 Display a heat-map of the number of protons (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_05.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_05.png)
 
 #### Neutrons
 
 Display a heat-map of the number of neutrons (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_06.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_06.png)
 
 #### Electrons
 
 Display a heat-map of the number of electrons (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_07.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_07.png)
 
 #### Valence Electrons
 
 Display a color-coded representation of the number of valence electrons:
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_08.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_08.png)
 
 #### Valency
 
 Display a color-coded representation of valency:
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_09.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_09.png)
 
 #### Atomic Radius
 
 Display a heat-map of atomic radius (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_10.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_10.png)
 
 #### Density
 
 Display a heat-map of density (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_11.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_11.png)
 
 #### Electronegativity
 
 Display a heat-map of electronegativity (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_12.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_12.png)
 
 #### Ionization Energy
 
 Display a heat-map of ionization energy (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_13.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_13.png)
 
 #### Electron Affinity
 
 Display a heat-map of electron affinity (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_14.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_14.png)
 
 #### Melting Point
 
 Display a heat-map of melting point (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_15.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_15.png)
 
 #### Boiling Point
 
 Display a heat-map of boiling point (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_16.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_16.png)
 
 #### Specific Heat
 
 Display a heat-map of specific heat (increasing from blue to red):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_17.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_17.png)
 
 #### Radioactivity
 
 Display which elements are radioactive (red) and stable (green):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_18.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_18.png)
 
 #### Occurrence
 
 Display which elements have a natural occurrence (blue), rare occurrence (orange), or artificial occurrence (yellow):
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_19.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_19.png)
 
 #### Year
 
 Display a heat-map of the year each element was discovered (increasing from blue to red).  Ancient elements appear in white:
 
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/display_20.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/display_20.png)
 
 ## Options
 
@@ -193,14 +193,14 @@ The `--mode=data` param displays a brief list of all the elements, including ato
 ```
 $ periodic-table-cli --mode=data
 ```
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/data.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/data.png)
 
 #### Verbose
 Add the optional `--verbose` flag (or shorthand `-v`) to display a detailed list of all elements with up to 27 data columns (limited by screen size):
 ```
 $ periodic-table-cli --mode=data --verbose
 ```
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/data_verbose.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/data_verbose.png)
 
 #### Specific Elements
 Specify an element to view data for that element.  Elements can be specified using the `--atomic-number=<number>`, `--symbol=<symbol>`, or `--name=<name>` params:
@@ -209,14 +209,14 @@ $ periodic-table-cli --mode=data --atomic-number=<number>
 $ periodic-table-cli --mode=data --symbol=<symbol>
 $ periodic-table-cli --mode=data --name=<name>
 ```
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/data_element.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/data_element.png)
 
 ### Chart Mode
 The `--mode=chart` param prints a non-interactive Periodic Table of Elements:  
 ```
 $ periodic-table-cli --mode=chart
 ```
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/chart.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/chart.png)
 
 Minimum terminal width: 113 characters
 
@@ -225,7 +225,7 @@ Add the optional `--small` flag (or shorthand `-s`) to print a smaller non-inter
 ```
 $ periodic-table-cli --mode=chart --small
 ```
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/chart_small.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/chart_small.png)
 
 Minimum terminal width: 76 characters
 
@@ -236,7 +236,7 @@ $ periodic-table-cli --mode=chart --atomic-number=<number>
 $ periodic-table-cli --mode=chart --symbol=<symbol>
 $ periodic-table-cli --mode=chart --name=<name>
 ```
-![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/chart_element.png)
+![What periodic-table-cli prints to the console](https://raw.githubusercontent.com/spirometaxas/periodic-table-cli/main/img/cli/chart_element.png)
 
 ### App Mode (default)
 
